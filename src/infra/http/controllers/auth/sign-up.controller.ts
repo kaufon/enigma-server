@@ -1,3 +1,4 @@
+import { Public } from "@/infra/auth/public";
 import { AuthController } from "@/infra/http/controllers/auth/auth.controller";
 import { ZodValidationPipe } from "@/infra/http/pipes/zod-validation.pipe";
 import { SignUpService } from "@/infra/services/services/auth/sign-up.service";
@@ -10,6 +11,7 @@ export const signUpBodySchema = z.object({
 });
 export type SignUpBody = z.infer<typeof signUpBodySchema>;
 
+@Public()
 @AuthController()
 export class SignUpController {
 	constructor(private signUpService: SignUpService) {}

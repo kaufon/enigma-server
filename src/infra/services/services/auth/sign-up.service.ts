@@ -27,7 +27,7 @@ export class SignUpService {
 		const hashedPassword = await this.hashGenerator.hash(password);
 		const salt = randomBytes(16);
 		const encryptionKey = this.encryptionService.getKeyFromPassword(
-			password,
+			hashedPassword,
 			salt,
 		);
 		const encryptedEmail = this.encryptionService.encrypt(email, encryptionKey);

@@ -3,7 +3,7 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 
 { 
-  "email": "123", 
+  "email": "1234", 
   "password": "123456"
 }
 
@@ -13,6 +13,6 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 
 { 
-  "email": "12", 
+  "email": "1234", 
   "password": "123456"
 }

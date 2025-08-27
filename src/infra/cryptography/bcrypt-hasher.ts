@@ -3,7 +3,7 @@ import { compare, hash } from "bcryptjs";
 
 @Injectable()
 export class BcryptHasher {
-	private readonly HASH_SALT_LENGTH = 8;
+	private readonly HASH_SALT_LENGTH = 12;
 	async compare(plainValue: string, hashedValue: string): Promise<boolean> {
 		return compare(plainValue, hashedValue);
 	}

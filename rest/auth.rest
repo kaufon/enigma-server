@@ -3,6 +3,16 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 
 { 
-  "email": "1", 
+  "email": "123", 
+  "password": "123456"
+}
+
+### Sign in
+POST http://localhost:3333/auth/sign-in
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{ 
+  "email": "12", 
   "password": "123456"
 }

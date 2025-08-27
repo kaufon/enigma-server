@@ -8,19 +8,22 @@ datasource db {
 }
 
 model User {
-  id          String       @id @default(uuid())
-  email       String       @unique
-  masterKey   String       @map("master_key")
-  createdAt   DateTime     @default(now()) @map("created_at")
-  updatedAt   DateTime?    @updatedAt @map("updated_at")
-  credentials Credential[]
+  id                    String       @id @default(uuid())
+  emailHash             String       @unique @map("email_hash")
+  encryptedEmailIv      String       @unique @map("encrypted_email_iv")
+  encryptedEmailContent String       @unique @db.Text @map("encrypted_email_content")
+  masterKey             String       @map("master_key")
+  salt                  String
+  createdAt             DateTime     @default(now()) @map("created_at")
+  updatedAt             DateTime?    @updatedAt @map("updated_at")
+  credentials           Credential[]
 
   @@map("users")
 }
 
 model Credential {
   id        String    @id @default(uuid())
-  login  String
+  login     String
   password  String
   createdAt DateTime  @default(now()) @map("created_at")
   updatedAt DateTime? @updatedAt @map("updated_at")

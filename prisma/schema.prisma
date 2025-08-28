@@ -8,15 +8,22 @@ datasource db {
 }
 
 model User {
-  id                    String       @id @default(uuid())
-  emailHash             String       @unique @map("email_hash")
-  encryptedEmailIv      String       @unique @map("encrypted_email_iv")
-  encryptedEmailContent String       @unique @db.Text @map("encrypted_email_content")
-  masterKey             String       @map("master_key")
-  salt                  String
-  createdAt             DateTime     @default(now()) @map("created_at")
-  updatedAt             DateTime?    @updatedAt @map("updated_at")
-  credentials           Credential[]
+  id                         String    @id @default(uuid())
+  emailHash                  String    @unique @map("email_hash")
+  encryptedEmailIv           String    @map("encrypted_email_iv")
+  encryptedEmailContent      String    @map("encrypted_email_content") @db.Text
+  masterKey                  String    @map("master_key")
+  salt                       String
+  emergencyPassphraseHash    String?   @map("emergency_passphrase_hash")
+  securityQuestionAnswerHash String?   @map("security_question_answer_hash")
+  securityQuestionId         String?
+  passwordResetToken         String?   @unique @map("password_reset_token")
+  passwordResetExpiresAt     DateTime? @map("password_reset_expires_at")
+  createdAt                  DateTime  @default(now()) @map("created_at")
+  updatedAt                  DateTime? @updatedAt @map("updated_at")
+
+  credentials      Credential[]
+  SecurityQuestion SecurityQuestion? @relation(fields: [securityQuestionId], references: [id])
 
   @@map("users")
 }
@@ -32,4 +39,12 @@ model Credential {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map("credentials")
+}
+
+model SecurityQuestion {
+  id    String @id @default(uuid())
+  text  String @unique
+  users User[]
+
+  @@map("security_questions")
 }

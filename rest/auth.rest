@@ -14,5 +14,26 @@ Content-Type: application/json
 
 { 
   "email": "1234", 
-  "password": "123456"
+  "password": "senha-forte"
+}
+
+### Forgot password 
+POST http://localhost:3333/auth/forgot-password
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{ 
+  "email": "1234" 
+}
+
+### Reset with emergency passphrase 
+
+POST http://localhost:3333/auth/reset-password/passphrase
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{ 
+  "email": "1234", 
+  "newPassword": "senha-forte",
+  "passphrase": "my-very-strong-passphrase"
 }

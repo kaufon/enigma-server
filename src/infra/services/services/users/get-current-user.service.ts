@@ -29,9 +29,16 @@ export class GetCurrentUserService {
 				},
 				encryptionKey,
 			);
+			const isUserInDanger =
+				!prismaUser.emergencyPassphraseHash
+			const userInDangerReason = isUserInDanger
+				? "User has not set up an emergency passphrase"
+				: null;
 			return {
 				id: prismaUser.id,
 				email: decryptedEmail,
+				danger: isUserInDanger,
+				dangerReason: userInDangerReason,
 			};
 		} catch (error) {
 			throw new BadGatewayException(error.message);

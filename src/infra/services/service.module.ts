@@ -2,8 +2,10 @@ import { CryptographyModule } from "@/infra/cryptography/cryptography.module";
 import { DatabaseModule } from "@/infra/database/database.module";
 import { EnvModule } from "@/infra/env/env.module";
 import { SetupEmergencyPassphraseController } from "@/infra/http/controllers/security/setup-emergency-passphrase.controller";
+import { MailModule } from "@/infra/mail/mail.module";
 import { ForgotPasswordService } from "@/infra/services/services/auth/forgot-password.service";
 import { ResetPasswordWithPassphraseService } from "@/infra/services/services/auth/reset-password-with-passphrase.service";
+import { ResetPasswordWithTokenService } from "@/infra/services/services/auth/reset-password-with-token.service";
 import { SignInService } from "@/infra/services/services/auth/sign-in.service";
 import { SignUpService } from "@/infra/services/services/auth/sign-up.service";
 import { SetupEmergencyPassphraseService } from "@/infra/services/services/security/setup-emergency-passphrase.service";
@@ -20,8 +22,9 @@ import { Module } from "@nestjs/common";
 		UpdateUserService,
 		DeleteUserService,
 		SetupEmergencyPassphraseService,
-    ForgotPasswordService,
-    ResetPasswordWithPassphraseService,
+		ForgotPasswordService,
+		ResetPasswordWithPassphraseService,
+    ResetPasswordWithTokenService,
 	],
 	exports: [
 		SignUpService,
@@ -30,9 +33,10 @@ import { Module } from "@nestjs/common";
 		UpdateUserService,
 		DeleteUserService,
 		SetupEmergencyPassphraseService,
-    ForgotPasswordService,
-    ResetPasswordWithPassphraseService,
+		ForgotPasswordService,
+		ResetPasswordWithPassphraseService,
+    ResetPasswordWithTokenService,
 	],
-	imports: [DatabaseModule, CryptographyModule, EnvModule],
+	imports: [DatabaseModule, CryptographyModule, EnvModule, MailModule],
 })
 export class ServiceModule {}

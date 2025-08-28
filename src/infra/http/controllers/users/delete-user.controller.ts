@@ -1,11 +1,12 @@
 import { UsersController } from "@/infra/http/controllers/users/users.controller";
 import { DeleteUserService } from "@/infra/services/services/users/delete-user.service";
+import { emailSchema, passwordSchema } from "@/validation/schemas/zod";
 import { Body, Delete, Param, Put } from "@nestjs/common";
 import z from "zod";
 
 export const deleteUserSchema = z.object({
-	email: z.string(),
-	password: z.string().min(6),
+	email: emailSchema,
+	password: passwordSchema,
 });
 export type SignUpBody = z.infer<typeof deleteUserSchema>;
 

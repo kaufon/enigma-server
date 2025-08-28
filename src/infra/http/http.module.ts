@@ -1,5 +1,6 @@
 import { ForgotPasswordController } from "@/infra/http/controllers/auth/forgot-password.controller";
 import { ResetPasswordWithPassphraseController } from "@/infra/http/controllers/auth/reset-password-with-passphrase.controller";
+import { ResetPasswordWithTokenController } from "@/infra/http/controllers/auth/reset-password-with-token.controller";
 import { SignInController } from "@/infra/http/controllers/auth/sign-in.controller";
 import { SignUpController } from "@/infra/http/controllers/auth/sign-up.controller";
 import { SetupEmergencyPassphraseController } from "@/infra/http/controllers/security/setup-emergency-passphrase.controller";
@@ -17,8 +18,9 @@ import { Module } from "@nestjs/common";
 		UpdateUserController,
 		DeleteUserController,
 		SetupEmergencyPassphraseController,
-    ForgotPasswordController,
-    ResetPasswordWithPassphraseController
+		ForgotPasswordController,
+		ResetPasswordWithPassphraseController,
+		ResetPasswordWithTokenController,
 	],
 	imports: [ServiceModule],
 })

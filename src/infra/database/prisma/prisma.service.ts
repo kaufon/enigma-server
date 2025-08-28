@@ -9,7 +9,7 @@ export class PrismaService
 	public client: PrismaClient;
 	constructor() {
 		super({
-			log: ["warn", "query", "error"],
+			log: ["warn", "error"],
 		});
 	}
 	onModuleDestroy() {

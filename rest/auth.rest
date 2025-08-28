@@ -3,8 +3,8 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 
 { 
-  "email": "1234", 
-  "password": "123456"
+  "email": "egnima.teste@enigma.com", 
+  "password": "SenhaForte123@"
 }
 
 ### Sign in
@@ -13,8 +13,8 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 
 { 
-  "email": "1234", 
-  "password": "senha-forte"
+  "email": "egnima.teste@enigma.com",
+  "password": "Senha-forte-123@@"
 }
 
 ### Forgot password 
@@ -23,7 +23,7 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 
 { 
-  "email": "1234" 
+  "email": "egnima.teste@enigma.com"
 }
 
 ### Reset with emergency passphrase 
@@ -33,7 +33,18 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 
 { 
-  "email": "1234", 
-  "newPassword": "senha-forte",
+  "email": "egnima.teste@enigma.com", 
+  "newPassword": "Senha-forte-123@@",
   "passphrase": "my-very-strong-passphrase"
+}
+
+### Reset with token
+
+POST http://localhost:3333/auth/reset-password/verify-token
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{ 
+  "newPassword": "SenhaMudada123@@",
+  "token": "faab1ac91d5db1cb7cdb16e38290075942625cb6d555c4b0188459b5d7dbdaaf"
 }

@@ -1,11 +1,12 @@
 import { UsersController } from "@/infra/http/controllers/users/users.controller";
 import { UpdateUserService } from "@/infra/services/services/users/update-user.service";
+import { emailSchema, passwordSchema } from "@/validation/schemas/zod";
 import { Body, Param, Put } from "@nestjs/common";
 import z from "zod";
 
 export const updateUserSchema = z.object({
-	email: z.string(),
-	password: z.string().min(6),
+	email: emailSchema,
+	password: passwordSchema,
 });
 export type SignUpBody = z.infer<typeof updateUserSchema>;
 

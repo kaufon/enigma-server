@@ -2,11 +2,12 @@ import { Public } from "@/infra/auth/public";
 import { AuthController } from "@/infra/http/controllers/auth/auth.controller";
 import { ZodValidationPipe } from "@/infra/http/pipes/zod-validation.pipe";
 import { ForgotPasswordService } from "@/infra/services/services/auth/forgot-password.service";
+import { emailSchema } from "@/validation/schemas/zod";
 import { Body, Post, UsePipes } from "@nestjs/common";
 import z from "zod";
 
 export const forgotPasswordBodySchema = z.object({
-	email: z.string(),
+	email: emailSchema
 });
 export type SignUpBody = z.infer<typeof forgotPasswordBodySchema>;
 

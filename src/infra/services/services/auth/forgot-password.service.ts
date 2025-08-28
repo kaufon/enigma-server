@@ -1,39 +1,44 @@
+import { BcryptHasher } from "@/infra/cryptography/bcrypt-hasher";
 import { PrismaService } from "@/infra/database/prisma/prisma.service";
-import { EnvService } from "@/infra/env/env.service";
+import { MailService } from "@/infra/mail/services/mail.service";
 import { BadRequestException, Injectable } from "@nestjs/common";
-import { createHmac, randomBytes } from "crypto";
+import { randomBytes } from "crypto";
 
 export type ForgotPasswordResponse = {
 	recoveryType: "PASSPHRASE" | "EMAIL";
-  token? : string
+	token?: string;
 };
 
 @Injectable()
 export class ForgotPasswordService {
 	constructor(
+		private mailService: MailService,
 		private prismaService: PrismaService,
-		private env: EnvService,
+		private bcryptHasher: BcryptHasher,
 	) {}
-	private createEmailHash(email: string): string {
-		const pepper = this.env.get("PEPPER");
-		return createHmac("sha256", pepper).update(email).digest("hex");
-	}
 	async execute(email: string): Promise<ForgotPasswordResponse> {
 		const user = await this.prismaService.user.findUnique({
-			where: { emailHash: this.createEmailHash(email) },
+			where: { emailHash: this.bcryptHasher.createEmailHash(email) },
 		});
 		if (!user) {
 			throw new BadRequestException("Invalid credentials");
 		}
-		const resetToken = randomBytes(32).toString("hex");
 		if (user.emergencyPassphraseHash) {
 			return {
 				recoveryType: "PASSPHRASE",
-        token: resetToken
 			};
 		}
-		const expirationDate = new Date(); 
+		const resetToken = randomBytes(32).toString("hex");
+		const expirationDate = new Date();
 		expirationDate.setHours(expirationDate.getHours() + 1);
+		await this.prismaService.user.update({
+			where: { id: user.id },
+			data: {
+				passwordResetToken: resetToken,
+				passwordResetExpiresAt: expirationDate,
+			},
+		});
+		await this.mailService.sendPasswordResetEmail(email, resetToken);
 		return {
 			recoveryType: "EMAIL",
 		};

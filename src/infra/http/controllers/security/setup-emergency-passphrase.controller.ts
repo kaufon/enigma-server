@@ -3,12 +3,13 @@ import type { UserPayload } from "@/infra/auth/jwt.strategy";
 import { SecurityController } from "@/infra/http/controllers/security/security.controller";
 import { ZodValidationPipe } from "@/infra/http/pipes/zod-validation.pipe";
 import { SetupEmergencyPassphraseService } from "@/infra/services/services/security/setup-emergency-passphrase.service";
+import { passwordSchema, stringSchema } from "@/validation/schemas/zod";
 import { Body, Post, UsePipes } from "@nestjs/common";
 import z from "zod";
 
 export const setupEmergencyPassphraseSchema = z.object({
-	password: z.string().min(6),
-	passphrase: z.string().min(6),
+	password: passwordSchema,
+	passphrase: stringSchema,
 });
 export type SignUpBody = z.infer<typeof setupEmergencyPassphraseSchema>;
 const bodyValidationPipe = new ZodValidationPipe(

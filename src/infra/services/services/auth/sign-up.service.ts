@@ -3,7 +3,7 @@ import { EncryptionService } from "@/infra/cryptography/encryption.service";
 import { PrismaService } from "@/infra/database/prisma/prisma.service";
 import { EnvService } from "@/infra/env/env.service";
 import { BadRequestException, Injectable } from "@nestjs/common";
-import { createHmac, randomBytes } from "crypto";
+import {  randomBytes } from "crypto";
 @Injectable()
 export class SignUpService {
 	constructor(
@@ -12,12 +12,8 @@ export class SignUpService {
 		private encryptionService: EncryptionService,
 		private env: EnvService,
 	) {}
-	private createEmailHash(email: string): string {
-		const pepper = this.env.get("PEPPER");
-		return createHmac("sha256", pepper).update(email).digest("hex");
-	}
 	async execute(email: string, password: string): Promise<void> {
-		const emailHash = this.createEmailHash(email);
+		const emailHash = this.hashGenerator.createEmailHash(email);
 		const userWithSameEmail = await this.prismaService.user.findUnique({
 			where: { emailHash },
 		});
@@ -25,19 +21,21 @@ export class SignUpService {
 			throw new BadRequestException("Email already in use");
 		}
 		const hashedPassword = await this.hashGenerator.hash(password);
-		const salt = randomBytes(16);
-		const encryptionKey = this.encryptionService.getKeyFromPassword(
-			hashedPassword,
-			salt,
+		const userDataKey = randomBytes(32);
+		const encryptedEmail = this.encryptionService.encrypt(email, userDataKey);
+		const masterKeyString = this.env.get("MASTER_KEY");
+		const applicationMasterKey = Buffer.from(masterKeyString, "hex");
+		const encryptedDataKey = this.encryptionService.encrypt(
+			userDataKey.toString("hex"),
+			applicationMasterKey,
 		);
-		const encryptedEmail = this.encryptionService.encrypt(email, encryptionKey);
 		await this.prismaService.user.create({
 			data: {
 				emailHash,
 				encryptedEmailIv: encryptedEmail.iv,
 				encryptedEmailContent: encryptedEmail.content,
 				masterKey: hashedPassword,
-				salt: salt.toString("hex"),
+        encryptedDataKey:`${encryptedDataKey.iv}:${encryptedDataKey.content}`
 			},
 		});
 	}

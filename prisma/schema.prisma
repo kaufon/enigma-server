@@ -30,8 +30,14 @@ model User {
 
 model Credential {
   id        String    @id @default(uuid())
-  login     String
-  password  String
+  encryptedTitleIv      String    @map("encrypted_title_iv")
+  encryptedTitleContent String    @map("encrypted_title_content") @db.Text
+  encryptedUsernameIv   String    @map("encrypted_username_iv")
+  encryptedUsernameContent String @map("encrypted_username_content") @db.Text
+  encryptedPasswordIv   String    @map("encrypted_password_iv")
+  encryptedPasswordContent String @map("encrypted_password_content") @db.Text
+  encryptedUrlIv        String?   @map("encrypted_url_iv")
+  encryptedUrlContent   String?   @map("encrypted_url_content") @db.Text
   createdAt DateTime  @default(now()) @map("created_at")
   updatedAt DateTime? @updatedAt @map("updated_at")
   userId    String    @map("user_id")

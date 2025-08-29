@@ -8,6 +8,7 @@ import { MailerModule } from "@nestjs-modules/mailer";
 import { EnvService } from "@/infra/env/env.service";
 import { HandlebarsAdapter } from "@nestjs-modules/mailer/dist/adapters/handlebars.adapter";
 import { join } from "path";
+import { ServeStaticModule } from "@nestjs/serve-static";
 
 @Module({
 	imports: [
@@ -41,6 +42,12 @@ import { join } from "path";
 				};
 			},
 		}),
+    ServeStaticModule.forRoot({
+      rootPath: join(process.cwd(), 'public'),
+      serveStaticOptions: {
+        index:false
+      }
+    }),
 		HttpModule,
 		EnvModule,
 		AuthModule,

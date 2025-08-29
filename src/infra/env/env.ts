@@ -18,6 +18,7 @@ export const envSchema = z.object({
 	MAIL_PASS: stringSchema,
   MASTER_KEY: stringSchema,
   SALT_ROUNDS: integerSchema,
+  ENCRYPTION_ALGORITHM: stringSchema,
 });
 
 export type Env = z.infer<typeof envSchema>;

@@ -8,7 +8,6 @@ export class CreateCredentialService {
 	constructor(
 		private prismaService: PrismaService,
 		private encryptionService: EncryptionService,
-		private env: EnvService,
 	) {}
 	async execute(
 		userId: string,
@@ -23,8 +22,7 @@ export class CreateCredentialService {
 		if (!user) {
 			throw new BadRequestException("User not found");
 		}
-		const masterKeyString = this.env.get("MASTER_KEY");
-		const applicationMasterKey = Buffer.from(masterKeyString, "hex");
+		const applicationMasterKey = this.encryptionService.getApplicationMasterKey();
 		const [userKeyIv, userKeyContent] = user.encryptedDataKey.split(":");
 		const userDataKey = Buffer.from(
 			this.encryptionService.decrypt(

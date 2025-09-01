@@ -1,0 +1,35 @@
+@TOKEN=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI5YzJiOTFmZC04MTA4LTQ4NmMtOGVmZC0yOTNjMjNhMDY1YTYiLCJpYXQiOjE3NTY3MzMyNzIsImV4cCI6MTc1NjczNjg3Mn0.EflmHmmgZ2S3QtTpLfo-iXnP-4SBLd05-hbWdjRkpW-5I4f_kMITLw2-0ctgyz6nHj8GY1JHgAjM9GPihVdQgkRhGH4cbOKrmpTj26HlL16dkQuMoOj2_Fhiy2zZ7ZdL7tdbKfbj7-fAZRGCh40JP7ODbtaygAeUPHyEIbbV7pfClXWQ_txgMGMmZiSNLK8h3CF3zNiT1O5Q6ciE66XRAartLGCTiMWB3mSjMb035qgz5bKFCFJkjHOZi9KWp4Iy4ps2IgG5QDPkucHm-Ymsv7AefcKOaCNwGQWaEDB34Pp8VozWG9imLLSK692pY1CHpynHr5P5kJBjc4WNKCt3Bg
+
+
+### Create credential
+POST http://localhost:3333/category/create
+HTTP/1.1 201 Created
+Content-Type: application/json
+Authorization: Bearer {{TOKEN}}
+
+{ 
+  "name": "Benana"
+}
+
+### List credential
+GET http://localhost:3333/category/list
+HTTP/1.1 200 OK
+Content-Type: application/json
+Authorization: Bearer {{TOKEN}}
+
+### Edit credential
+PUT http://localhost:3333/category/edit/26e823a6-177b-40a1-8235-6e7fb88c4e90
+HTTP/1.1 200 OK
+Content-Type: application/json
+Authorization: Bearer {{TOKEN}}
+
+{
+  "name": "Banana"
+}
+
+### Delete credential
+DELETE http://localhost:3333/category/delete/26e823a6-177b-40a1-8235-6e7fb88c4e90
+HTTP/1.1 200 OK
+Content-Type: application/json
+Authorization: Bearer {{TOKEN}}
+

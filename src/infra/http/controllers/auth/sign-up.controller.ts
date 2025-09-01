@@ -1,15 +1,18 @@
+import { Public } from "@/infra/auth/public";
 import { AuthController } from "@/infra/http/controllers/auth/auth.controller";
 import { ZodValidationPipe } from "@/infra/http/pipes/zod-validation.pipe";
 import { SignUpService } from "@/infra/services/services/auth/sign-up.service";
+import { emailSchema, passwordSchema } from "@/validation/schemas/zod";
 import { Body, Post, UsePipes } from "@nestjs/common";
 import z from "zod";
 
 export const signUpBodySchema = z.object({
-	email: z.string(),
-	password: z.string().min(6),
+	email: emailSchema,
+	password: passwordSchema,
 });
 export type SignUpBody = z.infer<typeof signUpBodySchema>;
 
+@Public()
 @AuthController()
 export class SignUpController {
 	constructor(private signUpService: SignUpService) {}

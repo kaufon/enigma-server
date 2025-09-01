@@ -1,0 +1,30 @@
+@TOKEN=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI5YzJiOTFmZC04MTA4LTQ4NmMtOGVmZC0yOTNjMjNhMDY1YTYiLCJpYXQiOjE3NTY3Mjk5MTcsImV4cCI6MTc1NjczMzUxN30.omwuq-g66Pyu1Zzs_v1vRXQBUJ4DXMaALsyE3-rdxwrQXVq_NdbwDELuEjO8lEvlS95Y4VOUR5RD4mvWIGDye53d3fE8lyzktCflFh6PY4giztWsnUklxdm8VIcAry1HEeN3U27H4HjnYgpskjX1V933gNUHMi1qp_xOgDmh-SYnMrTV_A9oohn_n5n2LLKHi1C1LIAjWY1j3Ho8D35bC3kxJ6_UE8i1B1pokl93XT7AUKbel8nkEngSwzNBDRcKJt-l7-KrAgZs1xUoSt9-hUjqF3Q1KHHz29s1GvV1CL3yDMKynrDTNwZz-EVH-rp4Rk761s5HN8CHvTAC5x0O0Q
+
+
+### Get current user
+GET http://localhost:3333/users/me
+HTTP/1.1 200 OK
+Content-Type: application/json
+Authorization: Bearer {{TOKEN}}
+
+
+### Update user
+PUT http://localhost:3333/users/update/073915ec-bbc6-4b25-9586-2d3b7db5eb58
+HTTP/1.1 200 OK
+Content-Type: application/json
+Authorization: Bearer {{TOKEN}}
+
+{ 
+  "email": "email@email.com", 
+  "password": "123456"
+}
+### Delete user
+DELETE http://localhost:3333/users/delete/073915ec-bbc6-4b25-9586-2d3b7db5eb58
+HTTP/1.1 200 OK
+Content-Type: application/json
+Authorization: Bearer {{TOKEN}}
+
+{ 
+  "email": "email@email.com", 
+  "password": "123456"
+}

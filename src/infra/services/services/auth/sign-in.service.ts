@@ -1,28 +1,21 @@
 import { BcryptHasher } from "@/infra/cryptography/bcrypt-hasher";
 import { JwtEncrypter } from "@/infra/cryptography/jwt-encrypter";
 import { PrismaService } from "@/infra/database/prisma/prisma.service";
-import { EnvService } from "@/infra/env/env.service";
 import { BadRequestException, Injectable } from "@nestjs/common";
-import { createHmac } from "crypto";
 
 @Injectable()
 export class SignInService {
 	constructor(
 		private prismaService: PrismaService,
 		private hashGenerator: BcryptHasher,
-    private jwtEncrypter: JwtEncrypter,
-		private env: EnvService,
+		private jwtEncrypter: JwtEncrypter,
 	) {}
-	private createEmailHash(email: string): string {
-		const pepper = this.env.get("PEPPER");
-		return createHmac("sha256", pepper).update(email).digest("hex");
-	}
 	async execute(
 		email: string,
 		password: string,
 	): Promise<{ acessToken: string }> {
 		const user = await this.prismaService.user.findUnique({
-			where: { emailHash: this.createEmailHash(email) },
+			where: { emailHash: this.hashGenerator.createEmailHash(email) },
 		});
 		if (!user) {
 			throw new BadRequestException("Invalid credentials");

@@ -1,0 +1,14 @@
+@TOKEN=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI5YzJiOTFmZC04MTA4LTQ4NmMtOGVmZC0yOTNjMjNhMDY1YTYiLCJpYXQiOjE3NTY3MzAwMDEsImV4cCI6MTc1NjczMzYwMX0.ZMD7YWrkB7kQ8rGVVcS_86T9ZZO6tJ957dSAzhhkbw9HotmuWs0tDnL6nXzLOYExsUC_kt8SKiZ9v4cOpBLlmNpE8fiXwWRNZ8nPqhrrSxJPKfHExZlK3ANlxt33KoinrQm1EWYu3UY12oP_AR8gueOGHMkiGoMgwK5X-9qk6-txwtAyJj9UtSKWvRERb2i4YurJdGie4gOtgQbgqFu0B6wogU-zQuXl2Sw_faMOpTj7rU7ns2ObvlKzKlHDfX4o7dHcVa9KopjgFh_YVraQPWDxhuKz4crY0KuHVbeMFGMdulVsd7JOkiHa-ZUnNbjDMA5OCT_TvnNWFrUglHXW3A
+
+
+POST http://localhost:3333/security/setup-emergency-passphrase
+HTTP/1.1 200 OK
+Content-Type: application/json
+Authorization: Bearer {{TOKEN}}
+
+{
+   "passphrase": "my-very-strong-passphrase",
+   "password": "SenhaForte123@"
+}
+
+### Nothing

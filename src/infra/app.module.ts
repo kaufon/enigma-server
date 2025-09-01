@@ -42,12 +42,12 @@ import { ServeStaticModule } from "@nestjs/serve-static";
 				};
 			},
 		}),
-    ServeStaticModule.forRoot({
-      rootPath: join(process.cwd(), 'public'),
-      serveStaticOptions: {
-        index:false
-      }
-    }),
+		ServeStaticModule.forRoot({
+			rootPath: join(process.cwd(), "public"),
+			serveStaticOptions: {
+				index: false,
+			},
+		}),
 		HttpModule,
 		EnvModule,
 		AuthModule,

@@ -22,7 +22,7 @@ export class UpdateCategoryService {
 		}
 		await this.prismaService.category.update({
 			where: { id: categoryId, userId },
-			data: { name},
+			data: { name },
 		});
 	}
 }

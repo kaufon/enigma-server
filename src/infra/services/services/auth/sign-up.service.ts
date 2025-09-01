@@ -3,7 +3,7 @@ import { EncryptionService } from "@/infra/cryptography/encryption.service";
 import { PrismaService } from "@/infra/database/prisma/prisma.service";
 import { EnvService } from "@/infra/env/env.service";
 import { BadRequestException, Injectable } from "@nestjs/common";
-import {  randomBytes } from "crypto";
+import { randomBytes } from "crypto";
 @Injectable()
 export class SignUpService {
 	constructor(
@@ -35,7 +35,7 @@ export class SignUpService {
 				encryptedEmailIv: encryptedEmail.iv,
 				encryptedEmailContent: encryptedEmail.content,
 				masterKey: hashedPassword,
-        encryptedDataKey:`${encryptedDataKey.iv}:${encryptedDataKey.content}`
+				encryptedDataKey: `${encryptedDataKey.iv}:${encryptedDataKey.content}`,
 			},
 		});
 	}

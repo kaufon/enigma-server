@@ -8,7 +8,7 @@ export class DeleteUserService {
 		private prismaService: PrismaService,
 		private bcryptHasher: BcryptHasher,
 	) {}
-	async execute(userId: string, newEmail: string, plainPassword: string) {
+	async execute(userId: string, newEmail: string, plainPassword: string): Promise<void> {
 		const prismaUser = await this.prismaService.user.findUnique({
 			where: { id: userId },
 		});
@@ -29,6 +29,6 @@ export class DeleteUserService {
 		await this.prismaService.user.delete({
 			where: { id: userId, emailHash: emailHash },
 		});
-
+    return 
 	}
 }

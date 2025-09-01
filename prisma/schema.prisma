@@ -8,22 +8,20 @@ datasource db {
 }
 
 model User {
-  id                         String    @id @default(uuid())
-  emailHash                  String    @unique @map("email_hash")
-  encryptedEmailIv           String    @map("encrypted_email_iv")
-  encryptedEmailContent      String    @map("encrypted_email_content") @db.Text
-  masterKey                  String    @map("master_key")
-  emergencyPassphraseHash    String?   @map("emergency_passphrase_hash")
-  encryptedDataKey           String    @map("encrypted_data_key")
-  securityQuestionAnswerHash String?   @map("security_question_answer_hash")
-  securityQuestionId         String?
-  passwordResetToken         String?   @unique @map("password_reset_token")
-  passwordResetExpiresAt     DateTime? @map("password_reset_expires_at")
-  createdAt                  DateTime  @default(now()) @map("created_at")
-  updatedAt                  DateTime? @updatedAt @map("updated_at")
+  id                      String    @id @default(uuid())
+  emailHash               String    @unique @map("email_hash")
+  encryptedEmailIv        String    @map("encrypted_email_iv")
+  encryptedEmailContent   String    @map("encrypted_email_content") @db.Text
+  masterKey               String    @map("master_key")
+  emergencyPassphraseHash String?   @map("emergency_passphrase_hash")
+  encryptedDataKey        String    @map("encrypted_data_key")
+  passwordResetToken      String?   @unique @map("password_reset_token")
+  passwordResetExpiresAt  DateTime? @map("password_reset_expires_at")
+  createdAt               DateTime  @default(now()) @map("created_at")
+  updatedAt               DateTime? @updatedAt @map("updated_at")
 
-  credentials      Credential[]
-  SecurityQuestion SecurityQuestion? @relation(fields: [securityQuestionId], references: [id])
+  credentials Credential[]
+  category    Category[]
 
   @@map("users")
 }
@@ -41,16 +39,23 @@ model Credential {
   createdAt                DateTime  @default(now()) @map("created_at")
   updatedAt                DateTime? @updatedAt @map("updated_at")
   userId                   String    @map("user_id")
+  categoryId               String?   @map("category_id")
 
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user     User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  Category Category? @relation(fields: [categoryId], references: [id])
 
   @@map("credentials")
 }
 
-model SecurityQuestion {
-  id    String @id @default(uuid())
-  text  String @unique
-  users User[]
+model Category {
+  id     String @id @default(uuid())
+  name   String
+  userId String @map("user_id")
 
-  @@map("security_questions")
+  credentials Credential[]
+  user        User         @relation(fields: [userId], references: [id])
+  createdAt   DateTime     @default(now()) @map("created_at")
+  updatedAt   DateTime?    @default(now()) @map("updated_at")
+
+  @@map("categories")
 }

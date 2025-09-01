@@ -3,6 +3,10 @@ import { ResetPasswordWithPassphraseController } from "@/infra/http/controllers/
 import { ResetPasswordWithTokenController } from "@/infra/http/controllers/auth/reset-password-with-token.controller";
 import { SignInController } from "@/infra/http/controllers/auth/sign-in.controller";
 import { SignUpController } from "@/infra/http/controllers/auth/sign-up.controller";
+import { CreateCategoryController } from "@/infra/http/controllers/categories/create-category.controller";
+import { DeleteCategoryController } from "@/infra/http/controllers/categories/delete-category.controller";
+import { EditCategoryController } from "@/infra/http/controllers/categories/edit-category.controller";
+import { FindAllCategoriesController } from "@/infra/http/controllers/categories/find-all-categories.controller";
 import { CreateCredentialController } from "@/infra/http/controllers/credentials/create-credential.controller";
 import { EditCredentialDetailController } from "@/infra/http/controllers/credentials/edit-credentail-detail.controller";
 import { GetCredentialDetailController } from "@/infra/http/controllers/credentials/get-credential-detail.controller";
@@ -27,8 +31,12 @@ import { Module } from "@nestjs/common";
 		ResetPasswordWithTokenController,
 		CreateCredentialController,
 		ListCredentialsController,
-    GetCredentialDetailController,
-    EditCredentialDetailController
+		GetCredentialDetailController,
+		EditCredentialDetailController,
+		CreateCategoryController,
+		FindAllCategoriesController,
+		EditCategoryController,
+		DeleteCategoryController,
 	],
 	imports: [ServiceModule],
 })

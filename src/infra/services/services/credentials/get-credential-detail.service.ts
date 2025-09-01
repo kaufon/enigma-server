@@ -41,6 +41,7 @@ export class GetCredentialDetailService {
 		const decryptedCredential = this.encryptionService.getDecryptedCredential(
 			{
 				id: credential.id,
+				categoryId: credential.categoryId ?? undefined,
 				encryptedTitleIv: credential.encryptedTitleIv,
 				encryptedTitleContent: credential.encryptedTitleContent,
 				encryptedUsernameIv: credential.encryptedUsernameIv,

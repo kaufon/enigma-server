@@ -1,6 +1,8 @@
-import { EncryptedData, EncryptionService } from "@/infra/cryptography/encryption.service";
+import {
+	EncryptedData,
+	EncryptionService,
+} from "@/infra/cryptography/encryption.service";
 import { PrismaService } from "@/infra/database/prisma/prisma.service";
-import { EnvService } from "@/infra/env/env.service";
 import { BadRequestException, Injectable } from "@nestjs/common";
 
 @Injectable()
@@ -15,6 +17,7 @@ export class CreateCredentialService {
 		username: string,
 		password: string,
 		url?: string,
+		categoryId?: string,
 	) {
 		const user = await this.prismaService.user.findUnique({
 			where: { id: userId },
@@ -22,7 +25,8 @@ export class CreateCredentialService {
 		if (!user) {
 			throw new BadRequestException("User not found");
 		}
-		const applicationMasterKey = this.encryptionService.getApplicationMasterKey();
+		const applicationMasterKey =
+			this.encryptionService.getApplicationMasterKey();
 		const [userKeyIv, userKeyContent] = user.encryptedDataKey.split(":");
 		const userDataKey = Buffer.from(
 			this.encryptionService.decrypt(
@@ -55,6 +59,7 @@ export class CreateCredentialService {
 				encryptedPasswordContent: encryptedPassword.content,
 				encryptedUrlIv: encryptedUrl?.iv,
 				encryptedUrlContent: encryptedUrl?.content,
+				categoryId: categoryId || null,
 			},
 		});
 	}

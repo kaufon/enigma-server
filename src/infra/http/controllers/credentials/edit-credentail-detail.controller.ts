@@ -12,6 +12,7 @@ export const editCredentialBodySchema = z.object({
 	username: stringSchema.optional(),
 	password: stringSchema.optional(),
 	url: stringSchema.optional(),
+	categoryId: stringSchema.optional().nullable(),
 });
 
 export type EditedPlainCrendential = z.infer<typeof editCredentialBodySchema>;

@@ -5,8 +5,6 @@ import {
 import { PrismaService } from "@/infra/database/prisma/prisma.service";
 import { EditedPlainCrendential } from "@/infra/http/controllers/credentials/edit-credentail-detail.controller";
 import { BadRequestException, Injectable } from "@nestjs/common";
-import { Certificate } from "crypto";
-
 
 @Injectable()
 export class EditCredentialDetailService {
@@ -72,6 +70,7 @@ export class EditCredentialDetailService {
 		const newUsername = data.username ?? currentUsername;
 		const newPassword = data.password ?? currentPassword;
 		const newUrl = data.url ?? currentUrl;
+		const newCategoryId = data.categoryId ?? credential.categoryId;
 		const encryptedTitle = this.encryptionService.encrypt(
 			newTitle,
 			userDataKey,
@@ -99,6 +98,7 @@ export class EditCredentialDetailService {
 				encryptedPasswordContent: encryptedPassword.content,
 				encryptedUrlIv: encryptedUrl?.iv,
 				encryptedUrlContent: encryptedUrl?.content,
+				categoryId: newCategoryId,
 			},
 		});
 	}

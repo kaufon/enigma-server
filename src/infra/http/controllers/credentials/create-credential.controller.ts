@@ -12,6 +12,7 @@ export const createCredentialBodySchema = z.object({
 	username: stringSchema,
 	password: stringSchema,
 	url: stringSchema.optional(),
+	categoryId: stringSchema.optional(),
 });
 export type CreateCredentialBody = z.infer<typeof createCredentialBodySchema>;
 
@@ -21,12 +22,12 @@ const bodyValidationPipe = new ZodValidationPipe(createCredentialBodySchema);
 export class CreateCredentialController {
 	constructor(private createCredentialService: CreateCredentialService) {}
 
-  @Post("/create")
+	@Post("/create")
 	async handle(
 		@Body(bodyValidationPipe) body: CreateCredentialBody,
 		@CurrentUser() user: UserPayload,
 	) {
-		const { title, username, password, url } =
+		const { title, username, password, url, categoryId } =
 			createCredentialBodySchema.parse(body);
 		await this.createCredentialService.execute(
 			user.sub,
@@ -34,6 +35,7 @@ export class CreateCredentialController {
 			username,
 			password,
 			url,
+			categoryId,
 		);
 	}
 }

@@ -84,11 +84,13 @@ export class EncryptionService {
 			encryptedUrlContent: string | null;
 			encryptedPasswordIv?: string;
 			encrpytedPasswordContent?: string;
+			categoryId?: string;
 		},
 		userDataKey: Buffer,
 	): DecryptedCredential {
 		const decrypted: DecryptedCredential = {
 			id: credential.id,
+			categoryId: credential.categoryId,
 			title: this.decrypt(
 				{
 					iv: credential.encryptedTitleIv,

@@ -1,6 +1,7 @@
 import { EncryptionService } from "@/infra/cryptography/encryption.service";
 import { PrismaService } from "@/infra/database/prisma/prisma.service";
 import { BadRequestException, Injectable } from "@nestjs/common";
+import { Prisma } from "@prisma/client";
 
 export type DecryptedCredential = {
 	id: string;
@@ -8,6 +9,10 @@ export type DecryptedCredential = {
 	username: string;
 	url?: string;
 	password?: string;
+	categoryId?: string;
+};
+export type ListCredentialsParam = {
+	categoryId?: string;
 };
 
 @Injectable()
@@ -16,7 +21,10 @@ export class ListCredentialsService {
 		private prismaService: PrismaService,
 		private encryptionService: EncryptionService,
 	) {}
-	async execute(userId: string): Promise<DecryptedCredential[]> {
+	async execute(
+		userId: string,
+		params: ListCredentialsParam,
+	): Promise<DecryptedCredential[]> {
 		const user = await this.prismaService.user.findUnique({
 			where: { id: userId },
 		});
@@ -29,8 +37,12 @@ export class ListCredentialsService {
 			user.encryptedDataKey,
 			applicationMasterKey,
 		);
+		const whereClause: Prisma.CredentialWhereInput = { userId };
+		if (params.categoryId) {
+			whereClause.categoryId = params.categoryId;
+		}
 		const credentials = await this.prismaService.credential.findMany({
-			where: { userId },
+			where: whereClause,
 			orderBy: { createdAt: "desc" },
 		});
 		const decryptedCredentials = credentials.map((credential) => {
@@ -43,6 +55,7 @@ export class ListCredentialsService {
 					encryptedUsernameContent: credential.encryptedUsernameContent,
 					encryptedUrlIv: credential.encryptedUrlIv,
 					encryptedUrlContent: credential.encryptedUrlContent,
+					categoryId: credential.categoryId ?? undefined,
 				},
 				userDataKey,
 			);

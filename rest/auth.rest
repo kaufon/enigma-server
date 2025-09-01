@@ -3,7 +3,7 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 
 { 
-  "email": "egnima.fototeste@enigma.com", 
+  "email": "dupao.bonito@gmail.com", 
   "password": "SenhaForte123@"
 }
 
@@ -13,8 +13,8 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 
 { 
-  "email": "egnima.fototeste@enigma.com",
-  "password": "SenhaForte123@"
+  "email": "dupao.bonito@gmail.com",
+  "password": "Senha-forte-123@@"
 }
 
 ### Forgot password 
@@ -23,7 +23,7 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 
 { 
-  "email": "egnima.fototeste@enigma.com"
+  "email": "dupao.bonito@gmail.com"
 }
 
 ### Reset with emergency passphrase 
@@ -33,7 +33,7 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 
 { 
-  "email": "egnima.teste@enigma.com", 
+  "email": "dupao.bonito@gmail.com", 
   "newPassword": "Senha-forte-123@@",
   "passphrase": "my-very-strong-passphrase"
 }

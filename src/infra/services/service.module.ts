@@ -1,6 +1,7 @@
 import { CryptographyModule } from "@/infra/cryptography/cryptography.module";
 import { DatabaseModule } from "@/infra/database/database.module";
 import { EnvModule } from "@/infra/env/env.module";
+import { GetCredentialDetailController } from "@/infra/http/controllers/credentials/get-credential-detail.controller";
 import { SetupEmergencyPassphraseController } from "@/infra/http/controllers/security/setup-emergency-passphrase.controller";
 import { MailModule } from "@/infra/mail/mail.module";
 import { ForgotPasswordService } from "@/infra/services/services/auth/forgot-password.service";
@@ -9,6 +10,8 @@ import { ResetPasswordWithTokenService } from "@/infra/services/services/auth/re
 import { SignInService } from "@/infra/services/services/auth/sign-in.service";
 import { SignUpService } from "@/infra/services/services/auth/sign-up.service";
 import { CreateCredentialService } from "@/infra/services/services/credentials/create-credential.service";
+import { EditCredentialDetailService } from "@/infra/services/services/credentials/edit-credential-detail.service";
+import { GetCredentialDetailService } from "@/infra/services/services/credentials/get-credential-detail.service";
 import { ListCredentialsService } from "@/infra/services/services/credentials/list-credentials.service";
 import { SetupEmergencyPassphraseService } from "@/infra/services/services/security/setup-emergency-passphrase.service";
 import { DeleteUserService } from "@/infra/services/services/users/delete-user.service";
@@ -29,6 +32,8 @@ import { Module } from "@nestjs/common";
 		ResetPasswordWithTokenService,
 		CreateCredentialService,
 		ListCredentialsService,
+		GetCredentialDetailService,
+    EditCredentialDetailService
 	],
 	exports: [
 		SignUpService,
@@ -42,6 +47,8 @@ import { Module } from "@nestjs/common";
 		ResetPasswordWithTokenService,
 		CreateCredentialService,
 		ListCredentialsService,
+		GetCredentialDetailService,
+    EditCredentialDetailService
 	],
 	imports: [DatabaseModule, CryptographyModule, EnvModule, MailModule],
 })

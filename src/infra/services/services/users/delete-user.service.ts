@@ -8,27 +8,31 @@ export class DeleteUserService {
 		private prismaService: PrismaService,
 		private bcryptHasher: BcryptHasher,
 	) {}
-	async execute(userId: string, newEmail: string, plainPassword: string): Promise<void> {
+	async execute(
+		userId: string,
+		newEmail: string,
+		plainPassword: string,
+	): Promise<void> {
 		const prismaUser = await this.prismaService.user.findUnique({
 			where: { id: userId },
 		});
 		if (!prismaUser) {
-			throw new BadGatewayException("User not found");
+			throw new BadGatewayException("Usuario não encontrado");
 		}
 		const isPasswordValid = await this.bcryptHasher.compare(
 			plainPassword,
 			prismaUser.masterKey,
 		);
 		if (!isPasswordValid) {
-			throw new BadGatewayException("Invalid credentials");
+			throw new BadGatewayException("Credenciais inválidas");
 		}
 		const emailHash = this.bcryptHasher.createEmailHash(newEmail);
 		if (emailHash !== prismaUser.emailHash) {
-			throw new BadGatewayException("Invalid credentials");
+			throw new BadGatewayException("Credenciais inválidas");
 		}
 		await this.prismaService.user.delete({
 			where: { id: userId, emailHash: emailHash },
 		});
-    return 
+		return;
 	}
 }

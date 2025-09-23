@@ -17,7 +17,7 @@ export class UpdateUserService {
 			where: { id: userId },
 		});
 		if (!prismaUser) {
-			throw new BadGatewayException("User not found");
+			throw new BadGatewayException("Usuario não encontrado");
 		}
 		const emailHash = this.bcryptHasher.createEmailHash(newEmail);
 		const passwordMatch = await this.bcryptHasher.compare(
@@ -25,13 +25,13 @@ export class UpdateUserService {
 			prismaUser.masterKey,
 		);
 		if (!passwordMatch) {
-			throw new BadGatewayException("Invalid password");
+			throw new BadGatewayException("Credenciais inválidas");
 		}
 		const userWithSameEmail = await this.prismaService.user.findUnique({
 			where: { emailHash, NOT: { id: userId } },
 		});
 		if (userWithSameEmail && userWithSameEmail.id !== userId) {
-			throw new BadGatewayException("Email already in use");
+			throw new BadGatewayException("E-mail ja cadastrado");
 		}
 		const masterKeyString = this.env.get("MASTER_KEY");
 		const applicationMasterKey = Buffer.from(masterKeyString, "hex");

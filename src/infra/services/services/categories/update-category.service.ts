@@ -13,11 +13,11 @@ export class UpdateCategoryService {
 			where: { id: categoryId, userId },
 		});
 		if (!category) {
-			throw new BadRequestException("Category not found");
+			throw new BadRequestException("Categoria nao encontrada");
 		}
 		if (category.userId !== userId) {
 			throw new BadRequestException(
-				"You don't have permission to update this category",
+				"Você não tem permissão para editar essa categoria",
 			);
 		}
 		await this.prismaService.category.update({

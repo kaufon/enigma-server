@@ -12,11 +12,11 @@ export class DeleteCategoryService {
 			where: { id: categoryId, userId },
 		});
 		if (!category) {
-			throw new BadRequestException("Category not found");
+			throw new BadRequestException("Categoria não encontrada");
 		}
 		if (category.userId !== userId) {
 			throw new BadRequestException(
-				"You don't have permission to update this category",
+				"Você não tem permissão para deletar essa categoria",
 			);
 		}
 		await this.prismaService.$transaction([

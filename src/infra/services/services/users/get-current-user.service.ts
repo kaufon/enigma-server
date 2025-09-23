@@ -17,7 +17,7 @@ export class GetCurrentUserService {
 			where: { id: userId },
 		});
 		if (!prismaUser) {
-			throw new BadGatewayException("User not found");
+			throw new BadGatewayException("Credenciais inválidas");
 		}
 		try {
 			const masterKeyString = this.env.get("MASTER_KEY");
@@ -39,7 +39,7 @@ export class GetCurrentUserService {
 			);
 			const isUserInDanger = !prismaUser.emergencyPassphraseHash;
 			const userInDangerReason = isUserInDanger
-				? "User has not set up an emergency passphrase"
+				? "Usuário sem frase de emergência cadastrada"
 				: null;
 			return {
 				id: prismaUser.id,

@@ -21,7 +21,7 @@ export class ForgotPasswordService {
 			where: { emailHash: this.bcryptHasher.createEmailHash(email) },
 		});
 		if (!user) {
-			throw new BadRequestException("Invalid credentials");
+			throw new BadRequestException("Credenciais inválidas");
 		}
 		if (user.emergencyPassphraseHash) {
 			return {

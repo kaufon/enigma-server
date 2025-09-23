@@ -18,7 +18,7 @@ export class SignUpService {
 			where: { emailHash },
 		});
 		if (userWithSameEmail) {
-			throw new BadRequestException("Email already in use");
+			throw new BadRequestException("E-mail ja cadastrado");
 		}
 		const hashedPassword = await this.hashGenerator.hash(password);
 		const userDataKey = randomBytes(32);

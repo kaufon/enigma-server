@@ -18,14 +18,14 @@ export class SignInService {
 			where: { emailHash: this.hashGenerator.createEmailHash(email) },
 		});
 		if (!user) {
-			throw new BadRequestException("Invalid credentials");
+			throw new BadRequestException("Credenciais inválidas");
 		}
 		const isPasswordValid = await this.hashGenerator.compare(
 			password,
 			user.masterKey,
 		);
 		if (!isPasswordValid) {
-			throw new BadRequestException("Invalid credentials");
+			throw new BadRequestException("Credenciais inválidas");
 		}
 		const acessToken = await this.jwtEncrypter.encrypt({
 			sub: user.id,

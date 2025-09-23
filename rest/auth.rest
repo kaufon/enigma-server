@@ -3,7 +3,7 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 
 { 
-  "email": "dupao.bonito@gmail.com", 
+  "email": "teste@gmail.com", 
   "password": "SenhaForte123@"
 }
 
@@ -13,8 +13,8 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 
 { 
-  "email": "dupao.bonito@gmail.com",
-  "password": "Senha-forte-123@@"
+  "email": "teste@gmail.com", 
+  "password": "SenhaForte123@"
 }
 
 ### Forgot password 

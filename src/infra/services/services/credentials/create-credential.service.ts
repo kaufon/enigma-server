@@ -23,7 +23,7 @@ export class CreateCredentialService {
 			where: { id: userId },
 		});
 		if (!user) {
-			throw new BadRequestException("User not found");
+			throw new BadRequestException("Usuário não encontrado");
 		}
 		const applicationMasterKey =
 			this.encryptionService.getApplicationMasterKey();

@@ -12,7 +12,7 @@ export class CreateCategoryService {
 			},
 		});
 		if (categoryExists) {
-			throw new BadRequestException("Category already exists");
+			throw new BadRequestException("Categoria com mesmo nome já existe");
 		}
 		await this.prismaService.category.create({
 			data: {

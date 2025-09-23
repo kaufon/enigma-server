@@ -21,7 +21,7 @@ export class EditCredentialDetailService {
 			where: { id: userId },
 		});
 		if (!user) {
-			throw new BadRequestException("User not found");
+			throw new BadRequestException("Usuario não encontrado");
 		}
 		const applicationMasterKey =
 			this.encryptionService.getApplicationMasterKey();
@@ -33,7 +33,7 @@ export class EditCredentialDetailService {
 			where: { userId, id: credentailId },
 		});
 		if (!credential) {
-			throw new BadRequestException("Credential not existed");
+			throw new BadRequestException("Credencial não encontrada");
 		}
 		const currentTitle = this.encryptionService.decrypt(
 			{

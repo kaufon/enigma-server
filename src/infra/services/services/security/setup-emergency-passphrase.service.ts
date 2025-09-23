@@ -1,7 +1,6 @@
 import { BcryptHasher } from "@/infra/cryptography/bcrypt-hasher";
 import { PrismaService } from "@/infra/database/prisma/prisma.service";
 import { Injectable, UnauthorizedException } from "@nestjs/common";
-import { randomBytes } from "crypto";
 
 @Injectable()
 export class SetupEmergencyPassphraseService {
@@ -18,7 +17,7 @@ export class SetupEmergencyPassphraseService {
 
     const passwordMatches = await this.hasher.compare(password, user.masterKey);
     if (!passwordMatches) {
-      throw new UnauthorizedException("Invalid password");
+      throw new UnauthorizedException("Senha inválida");
     }
 		const emergencyPassphraseHash = await this.hasher.hash(passphrase);
 

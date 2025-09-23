@@ -5,6 +5,7 @@ import { EnvService } from "@/infra/env/env.service";
 
 async function bootstrap() {
 	const app = await NestFactory.create(AppModule);
+  app.enableCors()
   const configService = app.get(EnvService)
   const port = configService.get("PORT")
 	const config = new DocumentBuilder()
@@ -14,6 +15,6 @@ async function bootstrap() {
 		.build();
 	const documentFactory = () => SwaggerModule.createDocument(app, config);
 	SwaggerModule.setup("docs", app, documentFactory);
-	await app.listen(port);
+  await app.listen(3333, '0.0.0.0');
 }
 bootstrap();

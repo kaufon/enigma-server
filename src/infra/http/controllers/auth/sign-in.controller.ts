@@ -50,7 +50,6 @@ export class SignInController {
     @UsePipes(new ZodValidationPipe(signInBodySchema))
     async handle(@Body() body: SignInBody): Promise<{ accessToken: string }> {
         const { email, password } = body;
-        console.log('SignInController: handle called with', { email, password });
         
         // Corrigindo o nome da propriedade para corresponder ao seu código original e ao DTO
         const { acessToken } = await this.signInService.execute(email, password);

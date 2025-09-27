@@ -13,6 +13,7 @@ export type DecryptedCredential = {
 };
 export type ListCredentialsParam = {
 	categoryId?: string;
+  name?:string
 };
 
 @Injectable()

@@ -27,7 +27,6 @@ export class CreateCredentialController {
 		@Body(bodyValidationPipe) body: CreateCredentialBody,
 		@CurrentUser() user: UserPayload,
 	) {
-		console.log(body);
 		const { title, username, password, url, categoryId } =
 			createCredentialBodySchema.parse(body);
 		await this.createCredentialService.execute(

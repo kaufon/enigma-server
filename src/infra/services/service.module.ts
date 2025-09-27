@@ -21,6 +21,8 @@ import {
 	FindAllCategoriesService,
 	DeleteCategoryService,
 	DeleteCredentialService,
+	GetCategoryDetailsService,
+	SetAutoLockTimeoutService,
 } from "@/infra/services/services";
 import { Module } from "@nestjs/common";
 
@@ -44,6 +46,8 @@ import { Module } from "@nestjs/common";
 		FindAllCategoriesService,
 		DeleteCategoryService,
 		DeleteCredentialService,
+		GetCategoryDetailsService,
+		SetAutoLockTimeoutService,
 	],
 	exports: [
 		SignUpService,
@@ -64,6 +68,8 @@ import { Module } from "@nestjs/common";
 		FindAllCategoriesService,
 		DeleteCategoryService,
 		DeleteCredentialService,
+		GetCategoryDetailsService,
+		SetAutoLockTimeoutService,
 	],
 	imports: [DatabaseModule, CryptographyModule, EnvModule, MailModule],
 })

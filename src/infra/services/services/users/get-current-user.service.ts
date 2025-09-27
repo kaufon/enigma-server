@@ -46,6 +46,7 @@ export class GetCurrentUserService {
 				email: decryptedEmail,
 				danger: isUserInDanger,
 				dangerReason: userInDangerReason,
+        autoLockTimeout: prismaUser.autoLockTimeout,
 			};
 		} catch (error) {
 			throw new BadGatewayException(error.message);

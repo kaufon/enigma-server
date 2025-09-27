@@ -13,7 +13,7 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 
 { 
-  "email": "teste@gmail.com", 
+  "email": "kauanfvale@gmail.com", 
   "password": "SenhaForte123@"
 }
 
@@ -23,7 +23,7 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 
 { 
-  "email": "dupao.bonito@gmail.com"
+  "email": "kauanfvale@gmail.com"
 }
 
 ### Reset with emergency passphrase 

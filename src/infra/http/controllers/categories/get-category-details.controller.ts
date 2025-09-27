@@ -1,0 +1,18 @@
+import { CurrentUser } from "@/infra/auth/current-user.decorator";
+import type { UserPayload } from "@/infra/auth/jwt.strategy";
+import { CategoryController } from "@/infra/http/controllers/categories/category.controller";
+import { GetCategoryDetailsService } from "@/infra/services/services";
+import { CategoryDetails } from "@/infra/services/services/categories/get-category-details.service";
+import { Get, Param } from "@nestjs/common";
+
+@CategoryController()
+export class GetCategoryDetailsController {
+	constructor(private getCategoryDetailsService: GetCategoryDetailsService) {}
+	@Get("/details/:categoryId")
+	async handle(
+		@CurrentUser() user: UserPayload,
+		@Param("categoryId") categoryId: string,
+	): Promise<CategoryDetails> {
+		return await this.getCategoryDetailsService.execute(user.sub, categoryId);
+	}
+}

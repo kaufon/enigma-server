@@ -16,9 +16,10 @@ export const envSchema = z.object({
 	MAIL_PORT: integerSchema,
 	MAIL_USER: stringSchema,
 	MAIL_PASS: stringSchema,
-  MASTER_KEY: stringSchema,
-  SALT_ROUNDS: integerSchema,
-  ENCRYPTION_ALGORITHM: stringSchema,
+	MASTER_KEY: stringSchema,
+	SALT_ROUNDS: integerSchema,
+	ENCRYPTION_ALGORITHM: stringSchema,
+	MOBILE_URL: stringSchema,
 });
 
 export type Env = z.infer<typeof envSchema>;

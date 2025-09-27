@@ -17,6 +17,8 @@ import {
 	EditCategoryController,
 	DeleteCategoryController,
 	DeleteCredentialController,
+	GetCategoryDetailsController,
+    SetAutolockTimeoutController,
 } from "@/infra/http/controllers";
 import { ServiceModule } from "@/infra/services/service.module";
 import { Module } from "@nestjs/common";
@@ -41,6 +43,8 @@ import { Module } from "@nestjs/common";
 		EditCategoryController,
 		DeleteCategoryController,
 		DeleteCredentialController,
+		GetCategoryDetailsController,
+		SetAutolockTimeoutController,
 	],
 	imports: [ServiceModule],
 })

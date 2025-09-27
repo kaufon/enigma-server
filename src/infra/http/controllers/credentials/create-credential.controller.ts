@@ -11,8 +11,8 @@ export const createCredentialBodySchema = z.object({
 	title: stringSchema,
 	username: stringSchema,
 	password: stringSchema,
-	url: stringSchema.optional(),
-	categoryId: stringSchema.optional(),
+	url: z.string().optional(),
+	categoryId: z.string().optional(),
 });
 export type CreateCredentialBody = z.infer<typeof createCredentialBodySchema>;
 
@@ -27,6 +27,7 @@ export class CreateCredentialController {
 		@Body(bodyValidationPipe) body: CreateCredentialBody,
 		@CurrentUser() user: UserPayload,
 	) {
+		console.log(body);
 		const { title, username, password, url, categoryId } =
 			createCredentialBodySchema.parse(body);
 		await this.createCredentialService.execute(

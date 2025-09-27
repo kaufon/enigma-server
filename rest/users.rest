@@ -1,4 +1,4 @@
-@TOKEN=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI5YzJiOTFmZC04MTA4LTQ4NmMtOGVmZC0yOTNjMjNhMDY1YTYiLCJpYXQiOjE3NTY3Mjk5MTcsImV4cCI6MTc1NjczMzUxN30.omwuq-g66Pyu1Zzs_v1vRXQBUJ4DXMaALsyE3-rdxwrQXVq_NdbwDELuEjO8lEvlS95Y4VOUR5RD4mvWIGDye53d3fE8lyzktCflFh6PY4giztWsnUklxdm8VIcAry1HEeN3U27H4HjnYgpskjX1V933gNUHMi1qp_xOgDmh-SYnMrTV_A9oohn_n5n2LLKHi1C1LIAjWY1j3Ho8D35bC3kxJ6_UE8i1B1pokl93XT7AUKbel8nkEngSwzNBDRcKJt-l7-KrAgZs1xUoSt9-hUjqF3Q1KHHz29s1GvV1CL3yDMKynrDTNwZz-EVH-rp4Rk761s5HN8CHvTAC5x0O0Q
+@TOKEN=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjYTU2YWQ1NS0wMjZkLTRjNmYtODJkYi01MDVkZThmNGEzNWMiLCJpYXQiOjE3NTg5OTExOTUsImV4cCI6MTc1ODk5NDc5NX0.VlE82EZUx_F_ElHAUp41bLS1gn9pF1yQJjowP2alOhzcKndH71sieKbQhZzH1OyWu93fS-PEjl2E_SRyRbQvLMRHaXKgYZot1NqKWblN9XwKmTi6UCRZqmQpd-oVFP6veMNtqM0E9i6iA6w5WZbA5-5tebjRk1f08aIZ7RqfuT_VSA9jjkJBN5Fj-hhNh43OqOwGSepAQrbjcVuqN1Bq4c_jOpqkKiki3PlIO6wQRioY1-_Tpu19JTtZXiCG4j1eSeUhuEzYgWc9mb1FNZSUIuSAA5vlNE2bNwkj_V6yDE6jGxTR0mnkwkdVM-zNzKBip0GoVliNYj9cksC9cCUgQA
 
 
 ### Get current user
@@ -9,7 +9,7 @@ Authorization: Bearer {{TOKEN}}
 
 
 ### Update user
-PUT http://localhost:3333/users/update/073915ec-bbc6-4b25-9586-2d3b7db5eb58
+PUT http://localhost:3333/users/update
 HTTP/1.1 200 OK
 Content-Type: application/json
 Authorization: Bearer {{TOKEN}}
@@ -19,7 +19,7 @@ Authorization: Bearer {{TOKEN}}
   "password": "123456"
 }
 ### Delete user
-DELETE http://localhost:3333/users/delete/073915ec-bbc6-4b25-9586-2d3b7db5eb58
+DELETE http://localhost:3333/users/delete
 HTTP/1.1 200 OK
 Content-Type: application/json
 Authorization: Bearer {{TOKEN}}

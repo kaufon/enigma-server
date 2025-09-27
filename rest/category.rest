@@ -1,4 +1,4 @@
-@TOKEN=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI5YzJiOTFmZC04MTA4LTQ4NmMtOGVmZC0yOTNjMjNhMDY1YTYiLCJpYXQiOjE3NTY3MzMyNzIsImV4cCI6MTc1NjczNjg3Mn0.EflmHmmgZ2S3QtTpLfo-iXnP-4SBLd05-hbWdjRkpW-5I4f_kMITLw2-0ctgyz6nHj8GY1JHgAjM9GPihVdQgkRhGH4cbOKrmpTj26HlL16dkQuMoOj2_Fhiy2zZ7ZdL7tdbKfbj7-fAZRGCh40JP7ODbtaygAeUPHyEIbbV7pfClXWQ_txgMGMmZiSNLK8h3CF3zNiT1O5Q6ciE66XRAartLGCTiMWB3mSjMb035qgz5bKFCFJkjHOZi9KWp4Iy4ps2IgG5QDPkucHm-Ymsv7AefcKOaCNwGQWaEDB34Pp8VozWG9imLLSK692pY1CHpynHr5P5kJBjc4WNKCt3Bg
+@TOKEN=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI0YTBlMzUxNC0yMjYzLTQ4ZmYtYmM0MS1iMTY4NjE2YTE5ZmQiLCJpYXQiOjE3NTg4MTUyNTMsImV4cCI6MTc1ODgxODg1M30.vIUz_uMgjy2K4pECfSVfj5Y3koBhIPd7NiyNJTUUji3bKn3e1Q23MtUiI8ved-wDPV13az38N4OuPViOKd09b8haxi8eanUgyeYDO2j03VXTM7Ejo9rVmUwtl_xTyK-FYl9S8x2nSixHkFyni5i4D_bgjPcWSxRqDhweSnGZkxy0GOWo-shxe5ht77p5shTzw9RX6jF7mt6ZNIonoNKGPXurLoDjcGPx1riBBiX_DUfUzGEGm4gjfpfi8GQv5T-vjaaXDRK1o-bjMcp8xBPrEBj_17nPcOZlCHFtxYcvhikKYkEhMoJBKQ9Uq6OooVhDP1KLMy2M7Q0aoUEy2viR4g
 
 
 ### Create credential
@@ -13,6 +13,12 @@ Authorization: Bearer {{TOKEN}}
 
 ### List credential
 GET http://localhost:3333/category/list
+HTTP/1.1 200 OK
+Content-Type: application/json
+Authorization: Bearer {{TOKEN}}
+
+### Get credential
+GET http://localhost:3333/category/details/e2ff33ac-bf11-4e41-a474-4e9434761171
 HTTP/1.1 200 OK
 Content-Type: application/json
 Authorization: Bearer {{TOKEN}}

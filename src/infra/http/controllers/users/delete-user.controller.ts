@@ -1,3 +1,5 @@
+import { CurrentUser } from "@/infra/auth/current-user.decorator";
+import type { UserPayload } from "@/infra/auth/jwt.strategy";
 import { UsersController } from "@/infra/http/controllers/users/users.controller";
 import { DeleteUserService } from "@/infra/services/services/users/delete-user.service";
 import { emailSchema, passwordSchema } from "@/validation/schemas/zod";
@@ -14,11 +16,15 @@ export type SignUpBody = z.infer<typeof deleteUserSchema>;
 export class DeleteUserController {
 	constructor(private deleteUserService: DeleteUserService) {}
 
-	@Delete("/delete/:id")
+	@Delete("/delete")
 	async handle(
 		@Body() body: SignUpBody,
-		@Param("id") id: string,
+		@CurrentUser() user: UserPayload,
 	): Promise<void> {
-		return await this.deleteUserService.execute(id, body.email, body.password);
+		return await this.deleteUserService.execute(
+			user.sub,
+			body.email,
+			body.password,
+		);
 	}
 }

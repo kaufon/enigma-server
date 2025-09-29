@@ -1,3 +1,5 @@
+import { CurrentUser } from "@/infra/auth/current-user.decorator";
+import type { UserPayload } from "@/infra/auth/jwt.strategy";
 import { UsersController } from "@/infra/http/controllers/users/users.controller";
 import { UpdateUserService } from "@/infra/services/services/users/update-user.service";
 import { emailSchema, passwordSchema } from "@/validation/schemas/zod";
@@ -14,13 +16,13 @@ export type SignUpBody = z.infer<typeof updateUserSchema>;
 export class UpdateUserController {
 	constructor(private upadateUserService: UpdateUserService) {}
 
-	@Put("/update/:id")
+	@Put("/update")
 	async handle(
 		@Body() body: SignUpBody,
-		@Param("id") id: string,
+		@CurrentUser() user: UserPayload,
 	): Promise<void> {
 		return await this.upadateUserService.execute(
-      id,
+			user.sub,
 			body.email,
 			body.password,
 		);

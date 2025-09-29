@@ -11,7 +11,8 @@ export class MailService {
 	) {}
 	async sendPasswordResetEmail(email: string, token: string) {
 		const nodeEnv = this.env.get("ENV");
-		const resetLink = `enigma://reset-password?token=${token}`;
+		const mobileUrl = this.env.get("MOBILE_URL");
+		const resetLink = `${mobileUrl}/auth/reset-password/token/${token}`;
 
 		if (nodeEnv === "dev") {
 			this.logger.warn("Envio de email no ambiente de dev nao rola!");

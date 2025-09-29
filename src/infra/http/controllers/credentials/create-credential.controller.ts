@@ -11,8 +11,8 @@ export const createCredentialBodySchema = z.object({
 	title: stringSchema,
 	username: stringSchema,
 	password: stringSchema,
-	url: stringSchema.optional(),
-	categoryId: stringSchema.optional(),
+	url: z.string().optional(),
+	categoryId: z.string().optional(),
 });
 export type CreateCredentialBody = z.infer<typeof createCredentialBodySchema>;
 

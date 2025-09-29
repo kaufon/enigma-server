@@ -17,6 +17,7 @@ model User {
   encryptedDataKey        String    @map("encrypted_data_key")
   passwordResetToken      String?   @unique @map("password_reset_token")
   passwordResetExpiresAt  DateTime? @map("password_reset_expires_at")
+  autoLockTimeout         Int?      @map("auto_lock_timeout")
   createdAt               DateTime  @default(now()) @map("created_at")
   updatedAt               DateTime? @updatedAt @map("updated_at")
 
@@ -42,7 +43,7 @@ model Credential {
   categoryId               String?   @map("category_id")
 
   user     User      @relation(fields: [userId], references: [id], onDelete: Cascade)
-  Category Category? @relation(fields: [categoryId], references: [id])
+  Category Category? @relation(fields: [categoryId], references: [id], onDelete: SetNull)
 
   @@map("credentials")
 }
@@ -53,7 +54,7 @@ model Category {
   userId String @map("user_id")
 
   credentials Credential[]
-  user        User         @relation(fields: [userId], references: [id])
+  user        User         @relation(fields: [userId], references: [id], onDelete: Cascade)
   createdAt   DateTime     @default(now()) @map("created_at")
   updatedAt   DateTime?    @default(now()) @map("updated_at")
 

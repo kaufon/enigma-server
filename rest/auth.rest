@@ -23,7 +23,7 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 
 { 
-  "email": "dupao.bonito@gmail.com"
+  "email": "teste@gmail.com"
 }
 
 ### Reset with emergency passphrase 
@@ -33,7 +33,7 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 
 { 
-  "email": "dupao.bonito@gmail.com", 
+  "email": "testebonito@gmail.com", 
   "newPassword": "Senha-forte-123@@",
   "passphrase": "my-very-strong-passphrase"
 }

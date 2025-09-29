@@ -70,7 +70,18 @@ export class EditCredentialDetailService {
 		const newUsername = data.username ?? currentUsername;
 		const newPassword = data.password ?? currentPassword;
 		const newUrl = data.url ?? currentUrl;
-		const newCategoryId = data.categoryId ?? credential.categoryId;
+		let newCategoryId: string | null = credential.categoryId;
+		if (data.categoryId) {
+			const category = await this.prismaService.category.findUnique({
+				where: { id: data.categoryId, userId: userId },
+			});
+			if (!category) {
+				throw new BadRequestException("Categoria não encontrada");
+			}
+			newCategoryId = data.categoryId;
+		} else if (data.categoryId === null) {
+			newCategoryId = null;
+		}
 		const encryptedTitle = this.encryptionService.encrypt(
 			newTitle,
 			userDataKey,

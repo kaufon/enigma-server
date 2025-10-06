@@ -8,8 +8,9 @@ import {
 	EditCredentialDetailService,
 	GetCredentialDetailService,
 	ListCredentialsService,
+	CreateSafeNoteService,
+	ListSafeNotesService,
 } from "@/infra/services/vault/services";
-import { CreateSafeNoteService } from "@/infra/services/vault/services/safe-note";
 import { Module } from "@nestjs/common";
 
 @Module({
@@ -21,6 +22,7 @@ import { Module } from "@nestjs/common";
 		DeleteCredentialService,
 		GetCredentialDetailService,
 		CreateSafeNoteService,
+		ListSafeNotesService,
 	],
 	exports: [
 		ListCredentialsService,
@@ -29,6 +31,7 @@ import { Module } from "@nestjs/common";
 		DeleteCredentialService,
 		GetCredentialDetailService,
 		CreateSafeNoteService,
+		ListSafeNotesService,
 	],
 })
 export class VaultServiceModule {}

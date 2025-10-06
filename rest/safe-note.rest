@@ -8,11 +8,11 @@ Content-Type: application/json
 Authorization: Bearer {{TOKEN}}
 
 { 
-  "title": "Epic games", 
+  "title": "Nota segur", 
   "content": "nota segura"
 }
 ### List credentials
-GET http://localhost:3333/credentials/list
+GET http://localhost:3333/safe-note/list
 HTTP/1.1 201 Created
 Content-Type: application/json
 Authorization: Bearer {{TOKEN}}

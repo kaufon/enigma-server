@@ -1,0 +1,41 @@
+@TOKEN=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJmNjQyNWVhZS1lZTk5LTQzYzQtODQ4OC1mZjY0MTk2NjAwMmUiLCJpYXQiOjE3NTk3NTkwNTcsImV4cCI6MTc1OTc2MjY1N30.oSA261WBJ7-UTbmPFTWfxPFPi09mfEu0hqCMfO3LJ-oc-G-OQslUQENXC-dVckm_MGwHJqXUrqi6G6AjAw6_2C2Ftfwh4_ZEXoSm_KR4vHP9-ulStClRLIVGX9MQpKU6BNDwV_rWfhJOT1AbiX_7YoRJ1bwD6JeRnZJaLdipOy9uNMZ13caaLszGlZZaBqx806BgpJKq3ORbzx50Nth3PgxExXpt89NvAhIOrAiReKEnwlKmhmxVY3JBg-VtJdcZyQeKPl5S7uRgle2T7kCF0mwden7QjR-ihC6O32SuHOrHdzfyGJyeqQ_A9P5Lqad47XyHpuEDhppOlo7j_ZueXA
+
+
+### Create note
+POST http://localhost:3333/safe-note/create
+HTTP/1.1 201 Created
+Content-Type: application/json
+Authorization: Bearer {{TOKEN}}
+
+{ 
+  "title": "Epic games", 
+  "content": "nota segura"
+}
+### List credentials
+GET http://localhost:3333/credentials/list
+HTTP/1.1 201 Created
+Content-Type: application/json
+Authorization: Bearer {{TOKEN}}
+
+### Get credentail details
+GET http://localhost:3333/credentials/details/92df3881-c946-46e4-85c3-609ce739f559
+HTTP/1.1 201 Created
+Content-Type: application/json
+Authorization: Bearer {{TOKEN}}
+
+### Update credentail details
+PUT http://localhost:3333/credentials/edit/92df3881-c946-46e4-85c3-609ce739f559
+HTTP/1.1 201 Created
+Content-Type: application/json
+Authorization: Bearer {{TOKEN}}
+
+{ 
+  "url": "Paozinho lindo",
+  "categoryId": "362e3c52-af68-4d49-9459-b5b98cbaacd9"
+}
+
+### delete credentail details
+DELETE http://localhost:3333/credentials/delete/97bc2e41-6878-4961-b9f0-8211c7cb2277
+HTTP/1.1 201 Created
+Content-Type: application/json
+Authorization: Bearer {{TOKEN}}

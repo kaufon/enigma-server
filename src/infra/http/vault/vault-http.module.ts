@@ -1,5 +1,6 @@
 import {
 	CreateCredentialController,
+	CreateSafeNoteController,
 	DeleteCredentialController,
 	EditCredentialDetailController,
 	GetCredentialDetailController,
@@ -15,6 +16,7 @@ import { Module } from "@nestjs/common";
 		EditCredentialDetailController,
 		GetCredentialDetailController,
 		ListCredentialsController,
+		CreateSafeNoteController,
 	],
 	imports: [ServiceModule],
 })

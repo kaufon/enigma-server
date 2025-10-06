@@ -1,51 +1,15 @@
-import {
-	SignUpController,
-	SignInController,
-	GetCurrentUserController,
-	UpdateUserController,
-	DeleteUserController,
-	SetupEmergencyPassphraseController,
-	ForgotPasswordController,
-	ResetPasswordWithPassphraseController,
-	ResetPasswordWithTokenController,
-	CreateCredentialController,
-	ListCredentialsController,
-	GetCredentialDetailController,
-	EditCredentialDetailController,
-	CreateCategoryController,
-	FindAllCategoriesController,
-	EditCategoryController,
-	DeleteCategoryController,
-	DeleteCredentialController,
-	GetCategoryDetailsController,
-    SetAutolockTimeoutController,
-} from "@/infra/http/controllers";
-import { ServiceModule } from "@/infra/services/service.module";
+import { AuthHttpModule } from "@/infra/http/auth/auth-http.module";
+import { CategoryHttpModule } from "@/infra/http/categories/categories-http.module";
+import { ConfigurationHttpModule } from "@/infra/http/configuration/configuration-http.module";
+import { VaultHttpModule } from "@/infra/http/vault/vault-http.module";
 import { Module } from "@nestjs/common";
 
 @Module({
-	controllers: [
-		SignUpController,
-		SignInController,
-		GetCurrentUserController,
-		UpdateUserController,
-		DeleteUserController,
-		SetupEmergencyPassphraseController,
-		ForgotPasswordController,
-		ResetPasswordWithPassphraseController,
-		ResetPasswordWithTokenController,
-		CreateCredentialController,
-		ListCredentialsController,
-		GetCredentialDetailController,
-		EditCredentialDetailController,
-		CreateCategoryController,
-		FindAllCategoriesController,
-		EditCategoryController,
-		DeleteCategoryController,
-		DeleteCredentialController,
-		GetCategoryDetailsController,
-		SetAutolockTimeoutController,
+	imports: [
+		AuthHttpModule,
+		ConfigurationHttpModule,
+		CategoryHttpModule,
+		VaultHttpModule,
 	],
-	imports: [ServiceModule],
 })
 export class HttpModule {}

@@ -1,5 +1,5 @@
 import { EnvService } from "@/infra/env/env.service";
-import { DecryptedCredential } from "@/infra/services/services/credentials/list-credentials.service";
+import { DecryptedCredential } from "@/infra/services/vault/services/credentials/list-credentials.service"; 
 import { Injectable, InternalServerErrorException } from "@nestjs/common";
 import {
 	randomBytes,

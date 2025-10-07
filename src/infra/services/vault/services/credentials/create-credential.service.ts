@@ -16,6 +16,7 @@ export class CreateCredentialService {
 		title: string,
 		username: string,
 		password: string,
+    isEmergency: boolean,
 		url?: string,
 		categoryId?: string,
 	) {
@@ -60,6 +61,7 @@ export class CreateCredentialService {
 				encryptedUrlIv: encryptedUrl?.iv,
 				encryptedUrlContent: encryptedUrl?.content,
 				categoryId: categoryId || null,
+        isEmergency
 			},
 		});
 	}

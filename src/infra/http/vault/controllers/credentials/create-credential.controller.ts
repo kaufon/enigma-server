@@ -11,6 +11,7 @@ export const createCredentialBodySchema = z.object({
 	title: stringSchema,
 	username: stringSchema,
 	password: stringSchema,
+	isEmergency: z.boolean().optional().default(false),
 	url: z.string().optional(),
 	categoryId: z.string().optional(),
 });
@@ -27,13 +28,14 @@ export class CreateCredentialController {
 		@Body(bodyValidationPipe) body: CreateCredentialBody,
 		@CurrentUser() user: UserPayload,
 	) {
-		const { title, username, password, url, categoryId } =
+		const { title, username, password, url, categoryId,isEmergency } =
 			createCredentialBodySchema.parse(body);
 		await this.createCredentialService.execute(
 			user.sub,
 			title,
 			username,
 			password,
+      isEmergency,
 			url,
 			categoryId,
 		);

@@ -1,4 +1,4 @@
-@TOKEN=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJmNjQyNWVhZS1lZTk5LTQzYzQtODQ4OC1mZjY0MTk2NjAwMmUiLCJpYXQiOjE3NTk4NDcwMjUsImV4cCI6MTc1OTg1MDYyNX0.vA8GmpqOtvSkaN3NcQ1ZMwVj-56RV18VsHm2gW0bNuymz5gncFa3WoqfDaw4oND-Idl0eCfmdIyI2unfBmLcCEK8k3X9PVIjawvFJ_RmwQyJaL3TyWA1mCyCgGFwjrsGtIfRYCOJYTfD7uQYw1bzI7m72jzJUZq3TupLC_gk6MOVAzhOCS92jaSY_zmqo0K6A3QjHnEmBn34GzqwscHKDxYVwI77WTiMCtfMUAz4VqRxSJMtsj4HmMmpqiUPzbwu_q-FLPLeFli6XHA0ooxqbbm3O1l8UeGinDe9FcqyQJ5bAP_wWrp0CH2hTwRjxJXM-u0VJamdL_Zt7cr8agXvXA
+@TOKEN=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJmNjQyNWVhZS1lZTk5LTQzYzQtODQ4OC1mZjY0MTk2NjAwMmUiLCJpYXQiOjE3NjA5MTQ3NjIsImV4cCI6MTc2MDkxODM2Mn0.rHzkzj7GTXGbG-Zn7Uu3Zd4CGMFVp2fq_qcadv64EToVyurIU-TNQIukdQt1CNQ-NP54Tow8eVcuwK8VuumxhpcA39sckIte4PZI1isSFzq0HnnsDcIJaX5PT0b9h3B74fVIx-P-QSwGUvykDMkbHvD8D2mxBrlxSeVjb-_SU6w3GZeinh1RtJQuqWzCTvQkkWHOJpyHWCEuyP4YVVbtTgaHQwMFPR8-2pGC79NofEZSyxrdCJ-gM4oraRjJ09Z7RpDWTdFIucagvTCWcyr1M-jiHkxWGpGh_OidoRWEAuRYpm1Con12Vvw69GQ5VGwKdgltaJ_o-mCCwNaEf2tm0w
 
 
 ### Create note
@@ -8,8 +8,9 @@ Content-Type: application/json
 Authorization: Bearer {{TOKEN}}
 
 { 
-  "title": "Nota segur", 
-  "content": "nota segura"
+  "title": "Nota emertencia", 
+  "content": "nota segura",
+  "isEmergency": true
 }
 ### List credentials
 GET http://localhost:3333/safe-note/list

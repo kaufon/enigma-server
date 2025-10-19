@@ -7,6 +7,7 @@ import {
 	GetCurrentUserService,
 	SetAutoLockTimeoutService,
 	SetupEmergencyPassphraseService,
+	SetupEmergencyVaultService,
 	UpdateUserService,
 } from "@/infra/services/configuration/services";
 import { Module } from "@nestjs/common";
@@ -19,6 +20,7 @@ import { Module } from "@nestjs/common";
 		DeleteUserService,
 		UpdateUserService,
 		GetCurrentUserService,
+		SetupEmergencyVaultService,
 	],
 	exports: [
 		SetupEmergencyPassphraseService,
@@ -26,6 +28,7 @@ import { Module } from "@nestjs/common";
 		DeleteUserService,
 		UpdateUserService,
 		GetCurrentUserService,
+		SetupEmergencyVaultService,
 	],
 })
 export class ConfigurationServiceModule {}

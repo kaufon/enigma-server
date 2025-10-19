@@ -12,6 +12,7 @@ export class CreateSafeNoteService {
 		userId: string,
 		title: string,
 		content: string,
+    isEmergency: boolean,
 		categoryId?: string,
 	) {
 		const user = await this.prismaService.user.findUnique({
@@ -39,6 +40,7 @@ export class CreateSafeNoteService {
 				encryptedNoteIv: encryptedContent.iv,
 				encryptedNoteContent: encryptedContent.content,
 				categoryId: categoryId || null,
+        isEmergency
 			},
 		});
 	}

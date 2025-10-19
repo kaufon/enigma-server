@@ -1,0 +1,37 @@
+import { BcryptHasher } from "@/infra/cryptography/bcrypt-hasher";
+import { PrismaService } from "@/infra/database/prisma/prisma.service";
+import { Injectable, UnauthorizedException } from "@nestjs/common";
+
+@Injectable()
+export class SetupEmergencyVaultService {
+	constructor(
+		private prisma: PrismaService,
+		private hasher: BcryptHasher,
+	) {}
+
+	async execute(
+		userId: string,
+		password: string,
+		emergencyVaultPassword: string,
+	) {
+		const user = await this.prisma.user.findUnique({ where: { id: userId } });
+		if (!user) {
+			throw new UnauthorizedException();
+		}
+
+		const passwordMatches = await this.hasher.compare(password, user.masterKey);
+		if (!passwordMatches) {
+			throw new UnauthorizedException("Senha inválida");
+		}
+		const emergencyVaultPasswordHash = await this.hasher.hash(
+			emergencyVaultPassword,
+		);
+
+		await this.prisma.user.update({
+			where: { id: userId },
+			data: {
+				emergencyVaultMasterKey: emergencyVaultPasswordHash,
+			},
+		});
+	}
+}

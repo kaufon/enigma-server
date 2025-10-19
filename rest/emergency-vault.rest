@@ -1,0 +1,12 @@
+@TOKEN=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJmNjQyNWVhZS1lZTk5LTQzYzQtODQ4OC1mZjY0MTk2NjAwMmUiLCJpYXQiOjE3NjA5MTQ3NjIsImV4cCI6MTc2MDkxODM2Mn0.rHzkzj7GTXGbG-Zn7Uu3Zd4CGMFVp2fq_qcadv64EToVyurIU-TNQIukdQt1CNQ-NP54Tow8eVcuwK8VuumxhpcA39sckIte4PZI1isSFzq0HnnsDcIJaX5PT0b9h3B74fVIx-P-QSwGUvykDMkbHvD8D2mxBrlxSeVjb-_SU6w3GZeinh1RtJQuqWzCTvQkkWHOJpyHWCEuyP4YVVbtTgaHQwMFPR8-2pGC79NofEZSyxrdCJ-gM4oraRjJ09Z7RpDWTdFIucagvTCWcyr1M-jiHkxWGpGh_OidoRWEAuRYpm1Con12Vvw69GQ5VGwKdgltaJ_o-mCCwNaEf2tm0w
+
+
+### Create credential
+GET http://localhost:3333/emergency-vault/list
+HTTP/1.1 201 Created
+Content-Type: application/json
+Authorization: Bearer {{TOKEN}}
+
+{ 
+  "emergencyVaultPassword": "SenhaCofre123@"
+}

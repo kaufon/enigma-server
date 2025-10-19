@@ -8,6 +8,7 @@ import {
 	GetCredentialDetailController,
 	GetSafeNoteDetailsController,
 	ListCredentialsController,
+	ListEmergencyVaultItemsController,
 	ListSafeNoteController,
 } from "@/infra/http/vault/controllers";
 import { ServiceModule } from "@/infra/services/service.module";
@@ -25,6 +26,7 @@ import { Module } from "@nestjs/common";
 		GetSafeNoteDetailsController,
 		EditSafeNoteController,
 		DeleteSafeNoteController,
+		ListEmergencyVaultItemsController,
 	],
 	imports: [ServiceModule],
 })

@@ -6,7 +6,7 @@ import { createHmac } from "crypto";
 @Injectable()
 export class BcryptHasher {
 	constructor(private readonly env: EnvService) {}
-	compare(plainValue: string, hashedValue: string): Promise<boolean> {
+	async compare(plainValue: string, hashedValue: string): Promise<boolean> {
 		return compare(plainValue, hashedValue);
 	}
 	hash(plain: string): Promise<string> {

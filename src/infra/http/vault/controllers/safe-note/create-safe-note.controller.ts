@@ -11,6 +11,7 @@ export const createSafeNoteBodySchema = z.object({
 	title: stringSchema,
 	content: stringSchema,
 	categoryId: z.string().optional(),
+	isEmergency: z.boolean().optional().default(false),
 });
 export type CreateSafeNoteBody = z.infer<typeof createSafeNoteBodySchema>;
 
@@ -25,11 +26,13 @@ export class CreateSafeNoteController {
 		@Body(bodyValidationPipe) body: CreateSafeNoteBody,
 		@CurrentUser() user: UserPayload,
 	) {
-		const { title, content, categoryId } = createSafeNoteBodySchema.parse(body);
+		const { title, content, categoryId, isEmergency } =
+			createSafeNoteBodySchema.parse(body);
 		await this.createSafeNoteService.execute(
 			user.sub,
 			title,
 			content,
+			isEmergency,
 			categoryId,
 		);
 	}

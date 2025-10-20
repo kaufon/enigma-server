@@ -1,0 +1,12 @@
+@TOKEN=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJmNjQyNWVhZS1lZTk5LTQzYzQtODQ4OC1mZjY0MTk2NjAwMmUiLCJpYXQiOjE3NjA5MTg3MDksImV4cCI6MTc2MDkyMjMwOX0.DnwML2js2U2b4hcR_cyUPGJ1UbCdZaOf7tIF743Z-IX7C08jHzHqT3DcGkyoXmDbn7y7bEnZ2ANn5040Vlw9DRMsE8-cJUqH6hTozJSYohDx6eQD2p2TSlzpJN9WNxBmZ9AXK-rS1he2f1BVX8_fz_llwMgJWIKFOiF54JnftU6phV7WZEPCa1wtT0y9l3cjxzr1dNoefU_HwTgcRBh3rE1d72gXr3Z1FDO36lDAaiLPC5nKAgddiHDo7FiPSdS743Mlj7uo6ABa6deJxRoPf2AGwCp-V2iI15qhI52uWlCP5DIXkt8ugmxbxG4-QYrY5SGIt7EN7wyAqUiT7w6rIg
+
+POST http://localhost:3333/configuration/vault/export
+HTTP/1.1 200 OK
+Content-Type: application/json
+Authorization: Bearer {{TOKEN}}
+
+{
+   "password": "SenhaForte123@",
+   "format": "csv"
+}
+

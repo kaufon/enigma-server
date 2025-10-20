@@ -1,5 +1,6 @@
 import {
 	DeleteUserController,
+	ExportVaultController,
 	GetCurrentUserController,
 	SetAutolockTimeoutController,
 	SetupEmergencyPassphraseController,
@@ -17,6 +18,7 @@ import { Module } from "@nestjs/common";
 		UpdateUserController,
 		GetCurrentUserController,
     SetupEmergencyVaultController,
+    ExportVaultController,
 	],
 	imports: [ServiceModule],
 })

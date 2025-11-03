@@ -1,5 +1,6 @@
 import { EnvService } from "@/infra/env/env.service";
-import { DecryptedCredential } from "@/infra/services/services/credentials/list-credentials.service";
+import { DecryptedCredential } from "@/infra/services/vault/services/credentials/list-credentials.service";
+import { DecryptedSafeNote } from "@/infra/services/vault/services/safe-note/list-safe-notes.service";
 import { Injectable, InternalServerErrorException } from "@nestjs/common";
 import {
 	randomBytes,
@@ -7,6 +8,7 @@ import {
 	createDecipheriv,
 	scryptSync,
 } from "crypto";
+import { matchesGlob } from "path";
 
 export interface EncryptedData {
 	iv: string;
@@ -120,6 +122,39 @@ export class EncryptionService {
 				{
 					iv: credential.encryptedPasswordIv,
 					content: credential.encrpytedPasswordContent,
+				},
+				userDataKey,
+			);
+		}
+		return decrypted;
+	}
+	getDecryptedSafeNote(
+		safeNote: {
+			id: string;
+			encryptedTitleIv: string;
+			encryptedTitleContent: string;
+			encryptedSafeNoteIv?: string;
+			encryptedSafeNoteContent?: string;
+			categoryId?: string;
+		},
+		userDataKey: Buffer,
+	): DecryptedSafeNote {
+		const decrypted: DecryptedSafeNote = {
+			id: safeNote.id,
+			categoryId: safeNote.categoryId,
+			title: this.decrypt(
+				{
+					iv: safeNote.encryptedTitleIv,
+					content: safeNote.encryptedTitleContent,
+				},
+				userDataKey,
+			),
+		};
+		if (safeNote.encryptedSafeNoteIv && safeNote.encryptedSafeNoteContent) {
+			decrypted.content = this.decrypt(
+				{
+					iv: safeNote.encryptedSafeNoteIv,
+					content: safeNote.encryptedSafeNoteContent,
 				},
 				userDataKey,
 			);

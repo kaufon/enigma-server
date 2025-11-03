@@ -1,76 +1,21 @@
-import { CryptographyModule } from "@/infra/cryptography/cryptography.module";
-import { DatabaseModule } from "@/infra/database/database.module";
-import { EnvModule } from "@/infra/env/env.module";
-import { MailModule } from "@/infra/mail/mail.module";
-import {
-	SignUpService,
-	SignInService,
-	GetCurrentUserService,
-	UpdateUserService,
-	DeleteUserService,
-	SetupEmergencyPassphraseService,
-	ForgotPasswordService,
-	ResetPasswordWithPassphraseService,
-	ResetPasswordWithTokenService,
-	CreateCredentialService,
-	ListCredentialsService,
-	GetCredentialDetailService,
-	EditCredentialDetailService,
-	CreateCategoryService,
-	UpdateCategoryService,
-	FindAllCategoriesService,
-	DeleteCategoryService,
-	DeleteCredentialService,
-	GetCategoryDetailsService,
-	SetAutoLockTimeoutService,
-} from "@/infra/services/services";
+import { AuthServiceModule } from "@/infra/services/auth/auth-service.module";
+import { CategoryServiceModule } from "@/infra/services/categories/category-service.module";
+import { ConfigurationServiceModule } from "@/infra/services/configuration/configuration-service.module";
+import { VaultServiceModule } from "@/infra/services/vault/vault-service.module";
 import { Module } from "@nestjs/common";
 
 @Module({
-	providers: [
-		SignUpService,
-		SignInService,
-		GetCurrentUserService,
-		UpdateUserService,
-		DeleteUserService,
-		SetupEmergencyPassphraseService,
-		ForgotPasswordService,
-		ResetPasswordWithPassphraseService,
-		ResetPasswordWithTokenService,
-		CreateCredentialService,
-		ListCredentialsService,
-		GetCredentialDetailService,
-		EditCredentialDetailService,
-		CreateCategoryService,
-		UpdateCategoryService,
-		FindAllCategoriesService,
-		DeleteCategoryService,
-		DeleteCredentialService,
-		GetCategoryDetailsService,
-		SetAutoLockTimeoutService,
+	imports: [
+		AuthServiceModule,
+		CategoryServiceModule,
+		VaultServiceModule,
+		ConfigurationServiceModule,
 	],
-	exports: [
-		SignUpService,
-		SignInService,
-		GetCurrentUserService,
-		UpdateUserService,
-		DeleteUserService,
-		SetupEmergencyPassphraseService,
-		ForgotPasswordService,
-		ResetPasswordWithPassphraseService,
-		ResetPasswordWithTokenService,
-		CreateCredentialService,
-		ListCredentialsService,
-		GetCredentialDetailService,
-		EditCredentialDetailService,
-		CreateCategoryService,
-		UpdateCategoryService,
-		FindAllCategoriesService,
-		DeleteCategoryService,
-		DeleteCredentialService,
-		GetCategoryDetailsService,
-		SetAutoLockTimeoutService,
-	],
-	imports: [DatabaseModule, CryptographyModule, EnvModule, MailModule],
+  exports: [
+    AuthServiceModule,
+    CategoryServiceModule,
+    VaultServiceModule,
+    ConfigurationServiceModule,
+  ]
 })
 export class ServiceModule {}

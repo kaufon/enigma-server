@@ -13,6 +13,7 @@ model User {
   encryptedEmailIv        String    @map("encrypted_email_iv")
   encryptedEmailContent   String    @map("encrypted_email_content") @db.Text
   masterKey               String    @map("master_key")
+  emergencyVaultMasterKey String?   @map("emergency_vault_master_key")
   emergencyPassphraseHash String?   @map("emergency_passphrase_hash")
   encryptedDataKey        String    @map("encrypted_data_key")
   passwordResetToken      String?   @unique @map("password_reset_token")
@@ -23,6 +24,7 @@ model User {
 
   credentials Credential[]
   category    Category[]
+  SafeNote    SafeNote[]
 
   @@map("users")
 }
@@ -37,6 +39,7 @@ model Credential {
   encryptedPasswordContent String    @map("encrypted_password_content") @db.Text
   encryptedUrlIv           String?   @map("encrypted_url_iv")
   encryptedUrlContent      String?   @map("encrypted_url_content") @db.Text
+  isEmergency              Boolean   @default(false) @map("is_emergency")
   createdAt                DateTime  @default(now()) @map("created_at")
   updatedAt                DateTime? @updatedAt @map("updated_at")
   userId                   String    @map("user_id")
@@ -48,6 +51,24 @@ model Credential {
   @@map("credentials")
 }
 
+model SafeNote {
+  id                    String    @id @default(uuid())
+  encryptedTitleIv      String    @map("encrypted_title_iv")
+  encryptedTitleContent String    @map("encrypted_title_content") @db.Text
+  encryptedNoteIv       String    @map("encrypted_note_iv")
+  encryptedNoteContent  String    @map("encrypted_note_content") @db.Text
+  isEmergency           Boolean   @default(false) @map("is_emergency")
+  createdAt             DateTime  @default(now()) @map("created_at")
+  updatedAt             DateTime? @updatedAt @map("updated_at")
+  userId                String    @map("user_id")
+  categoryId            String?   @map("category_id")
+
+  user     User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  Category Category? @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+
+  @@map("safe_notes")
+}
+
 model Category {
   id     String @id @default(uuid())
   name   String
@@ -57,6 +78,7 @@ model Category {
   user        User         @relation(fields: [userId], references: [id], onDelete: Cascade)
   createdAt   DateTime     @default(now()) @map("created_at")
   updatedAt   DateTime?    @default(now()) @map("updated_at")
+  SafeNote    SafeNote[]
 
   @@map("categories")
 }

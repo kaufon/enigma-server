@@ -3,7 +3,7 @@ import type { UserPayload } from "@/infra/auth/jwt.strategy";
 import { ZodValidationPipe } from "@/infra/http/global/pipes/zod-validation.pipe";
 import { EmergencyVaultController } from "@/infra/http/vault/controllers/emergency-vault/emergency-vault.controller";
 import { ListEmergencyVaultItemsService } from "@/infra/services/vault/services";
-import { Body, Get } from "@nestjs/common";
+import { Body, Get, Post } from "@nestjs/common";
 import z from "zod";
 
 export const listVaultItemsBodySchema = z.object({
@@ -21,7 +21,7 @@ export class ListEmergencyVaultItemsController {
 		private listEmergencyVaultItemsService: ListEmergencyVaultItemsService,
 	) {}
 
-	@Get("/list")
+	@Post("/list")
 	async handle(
 		@CurrentUser() user: UserPayload,
 		@Body(zodValidationPipe) body: ListEmergencyVaultItemsBody,

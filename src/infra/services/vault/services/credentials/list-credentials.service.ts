@@ -38,7 +38,7 @@ export class ListCredentialsService {
 			user.encryptedDataKey,
 			applicationMasterKey,
 		);
-		const whereClause: Prisma.CredentialWhereInput = { userId };
+		const whereClause: Prisma.CredentialWhereInput = { userId,isEmergency:false };
 		if (params.categoryId) {
 			whereClause.categoryId = params.categoryId;
 		}

@@ -1,4 +1,4 @@
-@TOKEN=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJmNjQyNWVhZS1lZTk5LTQzYzQtODQ4OC1mZjY0MTk2NjAwMmUiLCJpYXQiOjE3NjA5MTQ3NjIsImV4cCI6MTc2MDkxODM2Mn0.rHzkzj7GTXGbG-Zn7Uu3Zd4CGMFVp2fq_qcadv64EToVyurIU-TNQIukdQt1CNQ-NP54Tow8eVcuwK8VuumxhpcA39sckIte4PZI1isSFzq0HnnsDcIJaX5PT0b9h3B74fVIx-P-QSwGUvykDMkbHvD8D2mxBrlxSeVjb-_SU6w3GZeinh1RtJQuqWzCTvQkkWHOJpyHWCEuyP4YVVbtTgaHQwMFPR8-2pGC79NofEZSyxrdCJ-gM4oraRjJ09Z7RpDWTdFIucagvTCWcyr1M-jiHkxWGpGh_OidoRWEAuRYpm1Con12Vvw69GQ5VGwKdgltaJ_o-mCCwNaEf2tm0w
+@TOKEN=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJmNjQyNWVhZS1lZTk5LTQzYzQtODQ4OC1mZjY0MTk2NjAwMmUiLCJpYXQiOjE3NjA5NjU3MjUsImV4cCI6MTc2MDk2OTMyNX0.V1BqGBZvFjpYP_ibur8eOKY3MNJTx9fhD2OMl-fFY-0wrgvP5VwI-pJwFXtC1eRyHZgo7WoRyu5msdmWIvIZmO-qxpDsMX5OIV4OFfz6flYoPsJGHq82sHwEfXtEFOH5aGZ3OB8GHd2wLdkxug-Fmp7WW-RH-eHCJltxjRIQbWMHa612UeD1s6ZxznBPTPtz4y6shCmKTzarGwZh7tPY7kCwTScOpfarMuY4ch_YsK_CB_0-dXVLlJZiK8lVIAvOafCxMY_jFBwo1eEHS_QH5NlUqkwEukICCScm4wY86FxGIQ_aFXuP6j4ZEjRGmveN0xEg-yjJBM_vxQUkO-CRuw
 
 
 ### Create note
@@ -8,8 +8,8 @@ Content-Type: application/json
 Authorization: Bearer {{TOKEN}}
 
 { 
-  "title": "Nota emertencia", 
-  "content": "nota segura",
+  "title": "Nota longa", 
+  "content": "nota 4783907489374893271849037214893748932798",
   "isEmergency": true
 }
 ### List credentials
@@ -19,7 +19,7 @@ Content-Type: application/json
 Authorization: Bearer {{TOKEN}}
 
 ### Get credentail details
-GET http://localhost:3333/safe-note/details/fd4b7a99-40e4-415c-9d4b-1ff828ddccd3
+GET http://localhost:3333/safe-note/details/1b9277aa-b133-40e2-9a46-910eadcf8965
 HTTP/1.1 201 Created
 Content-Type: application/json
 Authorization: Bearer {{TOKEN}}

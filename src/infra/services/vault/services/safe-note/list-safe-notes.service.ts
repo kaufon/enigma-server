@@ -36,7 +36,7 @@ export class ListSafeNotesService {
 			user.encryptedDataKey,
 			applicationMasterKey,
 		);
-		const whereClause: Prisma.SafeNoteWhereInput = { userId };
+		const whereClause: Prisma.SafeNoteWhereInput = { userId,isEmergency:false };
 		if (params.categoryId) {
 			whereClause.categoryId = params.categoryId;
 		}

@@ -18,6 +18,7 @@ import {
 	GetSharedItemService,
 	RevokeShareService,
 	ListMySharesService,
+    VaultHealthReportService,
 } from "@/infra/services/vault/services";
 import { Module } from "@nestjs/common";
 
@@ -38,7 +39,8 @@ import { Module } from "@nestjs/common";
 		CreateShareService,
 		GetSharedItemService,
 		RevokeShareService,
-    ListMySharesService
+    ListMySharesService,
+    VaultHealthReportService
 	],
 	exports: [
 		ListCredentialsService,
@@ -56,6 +58,7 @@ import { Module } from "@nestjs/common";
 		GetSharedItemService,
 		RevokeShareService,
 		ListMySharesService,
+    VaultHealthReportService
 	],
 })
 export class VaultServiceModule {}

@@ -1,4 +1,5 @@
 export * from "./credentials"
+export * from "./reports"
 export * from "./emergency-vault"
 export * from "./share"
 export * from "./safe-note"

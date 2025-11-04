@@ -25,6 +25,7 @@ model User {
   credentials Credential[]
   category    Category[]
   SafeNote    SafeNote[]
+  SharedItem  SharedItem[]
 
   @@map("users")
 }
@@ -82,3 +83,15 @@ model Category {
 
   @@map("categories")
 }
+
+model SharedItem {
+  id            String   @id @default(uuid())
+  userId        String   @map("user_id")
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  encryptedBlob String   @map("encrypted_blob") @db.Text
+  expiresAt     DateTime @map("expires_at")
+  deleteOnRead  Boolean  @default(false) @map("delete_on_read")
+  accessCount   Int      @default(0) @map("access_count")
+  createdAt     DateTime @default(now()) @map("created_at")
+}
+

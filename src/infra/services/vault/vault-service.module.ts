@@ -14,6 +14,10 @@ import {
 	EditSafeNoteService,
 	DeleteSafeNoteService,
 	ListEmergencyVaultItemsService,
+	CreateShareService,
+	GetSharedItemService,
+	RevokeShareService,
+	ListMySharesService,
 } from "@/infra/services/vault/services";
 import { Module } from "@nestjs/common";
 
@@ -31,6 +35,10 @@ import { Module } from "@nestjs/common";
 		EditSafeNoteService,
 		DeleteSafeNoteService,
 		ListEmergencyVaultItemsService,
+		CreateShareService,
+		GetSharedItemService,
+		RevokeShareService,
+    ListMySharesService
 	],
 	exports: [
 		ListCredentialsService,
@@ -44,6 +52,10 @@ import { Module } from "@nestjs/common";
 		EditSafeNoteService,
 		DeleteSafeNoteService,
 		ListEmergencyVaultItemsService,
+		CreateShareService,
+		GetSharedItemService,
+		RevokeShareService,
+		ListMySharesService,
 	],
 })
 export class VaultServiceModule {}

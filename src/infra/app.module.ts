@@ -9,9 +9,12 @@ import { EnvService } from "@/infra/env/env.service";
 import { HandlebarsAdapter } from "@nestjs-modules/mailer/dist/adapters/handlebars.adapter";
 import { join } from "path";
 import { ServeStaticModule } from "@nestjs/serve-static";
+import { ScheduleModule } from "@nestjs/schedule";
+import { TasksModule } from "@/infra/tasks/task.module";
 
 @Module({
 	imports: [
+    ScheduleModule.forRoot(),
 		ConfigModule.forRoot({
 			validate: (env) => envSchema.parse(env),
 			isGlobal: true,
@@ -51,6 +54,7 @@ import { ServeStaticModule } from "@nestjs/serve-static";
 		HttpModule,
 		EnvModule,
 		AuthModule,
+    TasksModule,
 	],
 })
 export class AppModule {}

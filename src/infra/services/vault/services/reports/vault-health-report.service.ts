@@ -6,6 +6,7 @@ import zxcvbn from "zxcvbn";
 export interface VaultHealthReport {
 	totalCredentials: number;
 	duplicatedCredentials: number;
+	oldCredentials: number;
 	strengthCounts: {
 		strong: number;
 		medium: number;
@@ -83,11 +84,20 @@ export class VaultHealthReportService {
 				strengthCounts.strong++;
 			}
 		}
+		const oldCredentials = await this.prisma.credential.count({
+			where: {
+				userId,
+				createdAt: {
+					lt: new Date(new Date().setFullYear(new Date().getFullYear() - 1)),
+				},
+			},
+		});
 
 		return {
 			totalCredentials: passwords.length,
 			duplicatedCredentials: duplicatedItemsCount,
 			strengthCounts,
+			oldCredentials: oldCredentials,
 		};
 	}
 }

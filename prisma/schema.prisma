@@ -8,19 +8,21 @@ datasource db {
 }
 
 model User {
-  id                      String    @id @default(uuid())
-  emailHash               String    @unique @map("email_hash")
-  encryptedEmailIv        String    @map("encrypted_email_iv")
-  encryptedEmailContent   String    @map("encrypted_email_content") @db.Text
-  masterKey               String    @map("master_key")
-  emergencyVaultMasterKey String?   @map("emergency_vault_master_key")
-  emergencyPassphraseHash String?   @map("emergency_passphrase_hash")
-  encryptedDataKey        String    @map("encrypted_data_key")
-  passwordResetToken      String?   @unique @map("password_reset_token")
-  passwordResetExpiresAt  DateTime? @map("password_reset_expires_at")
-  autoLockTimeout         Int?      @map("auto_lock_timeout")
-  createdAt               DateTime  @default(now()) @map("created_at")
-  updatedAt               DateTime? @updatedAt @map("updated_at")
+  id                         String    @id @default(uuid())
+  emailHash                  String    @unique @map("email_hash")
+  encryptedEmailIv           String    @map("encrypted_email_iv")
+  encryptedEmailContent      String    @map("encrypted_email_content") @db.Text
+  masterKey                  String    @map("master_key")
+  emergencyVaultMasterKey    String?   @map("emergency_vault_master_key")
+  emergencyPassphraseHash    String?   @map("emergency_passphrase_hash")
+  encryptedDataKey           String    @map("encrypted_data_key")
+  passwordResetToken         String?   @unique @map("password_reset_token")
+  passwordResetExpiresAt     DateTime? @map("password_reset_expires_at")
+  autoLockTimeout            Int?      @map("auto_lock_timeout")
+  reportNotificationEnabled  Boolean   @default(false) @map("report_notification_enabled")
+  reportNotificationSchedule String?   @map("report_notification_schedule") 
+  createdAt                  DateTime  @default(now()) @map("created_at")
+  updatedAt                  DateTime? @updatedAt @map("updated_at")
 
   credentials Credential[]
   category    Category[]
@@ -94,4 +96,3 @@ model SharedItem {
   accessCount   Int      @default(0) @map("access_count")
   createdAt     DateTime @default(now()) @map("created_at")
 }
-

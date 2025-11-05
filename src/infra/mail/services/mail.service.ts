@@ -32,4 +32,35 @@ export class MailService {
 			},
 		});
 	}
+	async sendPdfReportEmail(email: string, attachment: Buffer) {
+		const nodeEnv = this.env.get("ENV");
+
+		if (nodeEnv === "dev") {
+			this.logger.warn("Envio de email no ambiente de dev nao rola!");
+			this.logger.warn("--- DEVELOPMENT EMAIL (PDF Report) ---");
+			this.logger.warn(`To: ${email}`);
+			this.logger.warn("Subject: Seu Relatório de Saúde do Cofre Enigma");
+			this.logger.warn(
+				`Attachment: vault-report.pdf (${attachment.length} bytes)`,
+			);
+			this.logger.warn("--- END OF EMAIL ---");
+			return;
+		}
+
+		await this.mailerService.sendMail({
+			to: email,
+			subject: "Seu Relatório de Saúde do Cofre Enigma",
+			template: "./vault-report.hbs",
+			context: {
+				email: email,
+			},
+			attachments: [
+				{
+					filename: "vault-report.pdf",
+					content: attachment,
+					contentType: "application/pdf",
+				},
+			],
+		});
+	}
 }

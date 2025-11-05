@@ -14,6 +14,7 @@ import {
 	ListMySharesController,
 	ListSafeNoteController,
 	RevokeAccessShareController,
+    VaultPdfHealthReportController,
 } from "@/infra/http/vault/controllers";
 import { VaultHealthReportController } from "@/infra/http/vault/controllers/reports/vault-health-report.controller";
 import { ServiceModule } from "@/infra/services/service.module";
@@ -36,7 +37,8 @@ import { Module } from "@nestjs/common";
 		GetSharedItemController,
 		RevokeAccessShareController,
 		ListMySharesController,
-    VaultHealthReportController
+    VaultHealthReportController,
+    VaultPdfHealthReportController
 	],
 	imports: [ServiceModule],
 })

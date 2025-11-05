@@ -1,4 +1,4 @@
-@TOKEN=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJmNjQyNWVhZS1lZTk5LTQzYzQtODQ4OC1mZjY0MTk2NjAwMmUiLCJpYXQiOjE3NjE5MTY0NzIsImV4cCI6MTc2MTkyMDA3Mn0.vROoXhsifjHoD0DuotNqhKNWpfdcJhKweMNvlKvfmr_7GEBjqYMT1Ys3sZ_SFtTtO3xdOF5TMdC_WCkOnmTS4v8sUZpOruutL2gLMoIcxDEbLOiWvKzg6Coe2digGpwUr0zCClpnrCP8Fc91BySVv8eexmPf2s32V1N8uasdEgWS2tDLhUDJbrLXS8_R-SwK66VBItuHUs-Su8rU4GeTV9hQ8ajxa8TWjxOySK21pSzOVFYhN5z8P94ICyIDat3sMXP2HnyExe0Uz1v87db7Ki7VxDCgep_e1k7NjIaHokQlrHsuwsk2nxA2hG9_mMM3FKo_8H5Q9txOlv6yR7N_Bw
+@TOKEN=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxNzc1MzNmYy00OWRjLTRkYTktYTY0ZC00YjIwNmZhNGIzOTAiLCJpYXQiOjE3NjIzNDA5NDQsImV4cCI6MTc2MjM0NDU0NH0.hP-BSi7IFR1oXYdvzAikav-qiZsuPsZe094eED4JVtVNYXBlti7okdHXz3fAc90cESBksrbLvLyH_ficQnyrxbIUcGsiT20Oct78oHH5gid35Rxc_K2DTsHaa30uv32nfDXunOue2IEw89UHiG_ebUt_sCXmKF0MXVXp6ARIsBuzikKoZ9PJclu5ue42xCXXnPdtJoN5bjZ3F2pFQLeQdu9AT7Kalv60i8JVSJ3OUR633rRkJnhxSTdHDkkz1zlbL0gJ9xinYJDT8xhuxqnBPqf7_kjN4s_IJxozGQREBHNl-YepWrVIsLBxqR6V7oKfaRTAevdXPJy0Isu_IK1d4g
 
 
 POST http://localhost:3333/security/setup-emergency-passphrase
@@ -31,4 +31,17 @@ Authorization: Bearer {{TOKEN}}
 {
    "emergencyVaultPassword": "SenhaCofre123@",
    "password": "SenhaForte123@"
+}
+
+### report
+
+POST http://localhost:3333/security/setup-report
+HTTP/1.1 200 OK
+Content-Type: application/json
+Authorization: Bearer {{TOKEN}}
+
+{
+   "masterPassword": "SenhaForte123@",
+   "reportNotificationEnabled": true,
+   "reportNotificationSchedule": "1s"
 }

@@ -6,6 +6,7 @@ import {
 	SetAutolockTimeoutController,
 	SetupEmergencyPassphraseController,
 	SetupEmergencyVaultController,
+	SetupReportController,
 	UpdateUserController,
 } from "@/infra/http/configuration/controllers";
 import { ServiceModule } from "@/infra/services/service.module";
@@ -20,7 +21,8 @@ import { Module } from "@nestjs/common";
 		GetCurrentUserController,
     SetupEmergencyVaultController,
     ExportVaultController,
-    ImportVaultController
+    ImportVaultController,
+    SetupReportController
 	],
 	imports: [ServiceModule],
 })

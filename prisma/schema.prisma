@@ -20,7 +20,7 @@ model User {
   passwordResetExpiresAt     DateTime? @map("password_reset_expires_at")
   autoLockTimeout            Int?      @map("auto_lock_timeout")
   reportNotificationEnabled  Boolean   @default(false) @map("report_notification_enabled")
-  reportNotificationSchedule String?   @map("report_notification_schedule") 
+  reportNotificationSchedule String?   @map("report_notification_schedule")
   createdAt                  DateTime  @default(now()) @map("created_at")
   updatedAt                  DateTime? @updatedAt @map("updated_at")
 
@@ -95,4 +95,14 @@ model SharedItem {
   deleteOnRead  Boolean  @default(false) @map("delete_on_read")
   accessCount   Int      @default(0) @map("access_count")
   createdAt     DateTime @default(now()) @map("created_at")
+}
+
+model AppSetting {
+  id        String   @id @default(uuid())
+  key       String   @unique 
+  value     String 
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("app_settings")
 }

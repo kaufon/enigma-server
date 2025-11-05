@@ -5,6 +5,7 @@ import { MailModule } from "@/infra/mail/mail.module";
 import {
 	DeleteUserService,
 	ExportVaultService,
+	GetAppVersionService,
 	GetCurrentUserService,
 	ImportVaultService,
 	SetAutoLockTimeoutService,
@@ -26,7 +27,8 @@ import { Module } from "@nestjs/common";
 		SetupEmergencyVaultService,
     ExportVaultService,
     ImportVaultService,
-    SetupReportService
+    SetupReportService,
+    GetAppVersionService
 	],
 	exports: [
 		SetupEmergencyPassphraseService,
@@ -37,7 +39,8 @@ import { Module } from "@nestjs/common";
 		SetupEmergencyVaultService,
     ExportVaultService,
     ImportVaultService,
-    SetupReportService
+    SetupReportService,
+    GetAppVersionService
 	],
 })
 export class ConfigurationServiceModule {}

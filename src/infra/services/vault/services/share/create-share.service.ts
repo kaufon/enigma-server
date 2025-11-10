@@ -58,15 +58,15 @@ export class CreateShareService {
 				encryptedTitleContent: credential.encryptedTitleContent,
 				encryptedUsernameIv: credential.encryptedUsernameIv,
 				encryptedUsernameContent: credential.encryptedUsernameContent,
-				encryptedPasswordIv: credential.encryptedPasswordIv, 
-				encrpytedPasswordContent: credential.encryptedPasswordContent, 
+				encryptedPasswordIv: credential.encryptedPasswordIv,
+				encrpytedPasswordContent: credential.encryptedPasswordContent,
 				encryptedUrlIv: credential.encryptedUrlIv,
 				encryptedUrlContent: credential.encryptedUrlContent,
 			},
 			userDataKey,
 		);
 
-		const shareKey = randomBytes(32); 
+		const shareKey = randomBytes(32);
 
 		const dataToEncrypt = JSON.stringify(decryptedCredential);
 
@@ -80,27 +80,29 @@ export class CreateShareService {
 
 		const sharedItem = await this.prisma.sharedItem.create({
 			data: {
+				title: decryptedCredential.title,
 				userId,
 				encryptedBlob,
 				expiresAt,
 				deleteOnRead: dto.deleteOnRead,
+				hash: shareKey.toString("hex"),
 			},
 		});
 
 		return {
 			shareId: sharedItem.id,
-			shareKey: shareKey.toString("hex"), 
+			shareKey: shareKey.toString("hex"),
 		};
 	}
 
 	private calculateExpiration(expiresIn: "1h" | "24h" | "7d"): Date {
 		const now = new Date();
 		switch (expiresIn) {
-			case '1h':
+			case "1h":
 				return new Date(now.getTime() + 60 * 60 * 1000);
-			case '24h':
+			case "24h":
 				return new Date(now.getTime() + 24 * 60 * 60 * 1000);
-			case '7d':
+			case "7d":
 				return new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000);
 			default:
 				throw new InternalServerErrorException("Expiração inválida");

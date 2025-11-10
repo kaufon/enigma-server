@@ -1,5 +1,4 @@
-
-@TOKEN=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxNzc1MzNmYy00OWRjLTRkYTktYTY0ZC00YjIwNmZhNGIzOTAiLCJpYXQiOjE3NjIyNTIyNTksImV4cCI6MTc2MjI1NTg1OX0.danV8J4PyG81xOE2sjOrdshs-vziD-xWRqivjXegzpcb5MjUCe03DAm_7jXXJHbhw-1437_gEpEpVsKYJZWhDjxaKGLhjR-PYtZ7VIICi_dh-Fdmv7DxGXbztkb9cvzS37kkT1yuWc62wvrk8C1qtCBcPKMeM1vd_bQXo2T2UdAixh1z0Fn5kfZvn8SPug0fd82LfLc6aExU_fLzTNLmevnxcZWoJ89_kAf8j514zMlo4MnuvvFyTzi2YecsTYd3YWTXVnZMX0gTdBcadmlR69iYyyOEvfJxu6VK8Tl9gSTUOKZwN01PxgkVA9ctDOpXBLLXhMjQxRF5XQ4bAVCRkw
+@TOKEN=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI4YzRiNGM4Mi1lZTgxLTQ1YTAtODEzNS0zYzBlYzQxOTU3MjgiLCJpYXQiOjE3NjI1MzI2MzYsImV4cCI6MTc2MjUzNjIzNn0.HYe66gtdTMBfigbeDiGKH44nZSbjUm6BLOZgiW_FNoZKNlhmdTCQpNski2_nyG9PfUWqqlXN8zF1wxpy70stOHblGdblR8Gtizz75IuctU4q_LB7VkzwSDnNY1BG_S-3L60pSel4BcQLHqey5uO1rIF2mGJElf4CkNUui66RnLB24gdp3vj4xMf6ldxz7ObURFsiw66Y04qAicYhFueKkBsnYLnKidQIhV0llVGaSPED9a1AuJOEmEj9CFnpY9HmQiyk6tVSjyt6zE6El1vpHPLHe1-SSMEvBGGom18G5o-NfQGKMmIiE8zNOFzAK0DeqzBRoyiZps01vS83EUdq2A
 
 
 ### Create share
@@ -9,14 +8,14 @@ Content-Type: application/json
 Authorization: Bearer {{TOKEN}}
 
 { 
-  "credentialId": "f2a84d65-6625-4e39-ba6a-2445390662b4",
+  "credentialId": "43457a44-bfe2-4bb3-a8e4-00be9c9f351c",
   "masterPassword": "SenhaForte123@",
   "expiresIn": "7d",
   "deleteOnRead": false
 }
 
 ### Get shared item
-GET http://localhost:3333/share/3aa4477d-3457-43d7-b3b1-964406ab303a#222f41a37e7d91bf8e746a55728f54f716fc1b6014f52c60b4679fc842789136
+GET http://localhost:3333/share/b8a73d45-fe52-43f9-8555-26d9fe00627f
 HTTP/1.1 201 Created
 Content-Type: application/json
 

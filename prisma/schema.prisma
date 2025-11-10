@@ -89,6 +89,8 @@ model Category {
 model SharedItem {
   id            String   @id @default(uuid())
   userId        String   @map("user_id")
+  title         String
+  hash          String   
   user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   encryptedBlob String   @map("encrypted_blob") @db.Text
   expiresAt     DateTime @map("expires_at")
@@ -99,8 +101,8 @@ model SharedItem {
 
 model AppSetting {
   id        String   @id @default(uuid())
-  key       String   @unique 
-  value     String 
+  key       String   @unique
+  value     String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 

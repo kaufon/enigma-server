@@ -12,7 +12,6 @@ export class VaultPdfHealthReportController {
 	async handle(@CurrentUser() user: UserPayload, @Res() res: Response) {
 		const pdfBuffer = await this.pdfReportService.generatePdf(
 			user.sub,
-			"Usuário Verificado",
 		); 
 
 		res.setHeader("Content-Type", "application/pdf");

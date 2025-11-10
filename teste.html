@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Teste de Deep Link</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body { font-family: sans-serif; padding: 20px; font-size: 16px; line-height: 1.6; }
+        h1 { font-size: 1.5em; }
+        input {
+            width: 100%;
+            padding: 12px;
+            font-size: 1em;
+            margin-top: 10px;
+            box-sizing: border-box; /* Garante que o padding não quebre o layout */
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            font-size: 1.1em;
+            font-weight: bold;
+            color: white;
+            background-color: #007aff;
+            border: none;
+            border-radius: 8px;
+            margin-top: 15px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Ferramenta de Teste de Deep Link</h1>
+    <p>Cole o link de compartilhamento (`enigma://...`) no campo abaixo e clique em "Abrir Link" para testar.</p>
+
+    <input 
+        type="text" 
+        id="link-input" 
+        placeholder="enigma://share/..."
+        value="enigma://share/52a0aa6b-03fb-431a-97a9-4922b71f226a#2439f29489294bb753a176ad0c96e3abc1c11ec2c7166a81f003ec3ef62f32c0"
+    >
+
+    <button onclick="openLink()">Abrir Link</button>
+
+    <script>
+        function openLink() {
+            // Pega o valor do campo de input
+            var link = document.getElementById('link-input').value;
+            if (link) {
+                // Tenta navegar para o link
+                window.location.href = link;
+            } else {
+                alert("Por favor, cole um link para testar.");
+            }
+        }
+    </script>
+</body>
+</html>

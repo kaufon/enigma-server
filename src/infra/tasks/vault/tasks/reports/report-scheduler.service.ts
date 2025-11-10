@@ -88,7 +88,7 @@ export class ReportSchedulerService {
 			userDataKey,
 		);
 		try {
-			const pdfBuffer = await this.pdfService.generatePdf(user.id, email);
+			const pdfBuffer = await this.pdfService.generatePdf(user.id);
 
 			await this.emailService.sendPdfReportEmail(email, pdfBuffer);
 

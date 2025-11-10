@@ -92,6 +92,7 @@ export class ImportVaultService {
 				"Falha ao analisar o arquivo. Formato inválido.",
 			);
 		}
+    console.log({ credentialsToImport, safeNotesToImport });
 
 		try {
 			const result = await this.prisma.$transaction(async (tx) => {

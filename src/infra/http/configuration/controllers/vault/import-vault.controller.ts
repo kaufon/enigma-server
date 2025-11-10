@@ -43,6 +43,8 @@ export class ImportVaultController {
 		)
 		file: Express.Multer.File, 
 	) {
+    console.log('ImportVaultController.handle called with user:', user.sub);
+    console.log({ body, filePresent: !!file });
 		if (!file) {
 			throw new BadRequestException("Nenhum arquivo enviado.");
 		}

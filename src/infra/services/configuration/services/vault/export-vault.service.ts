@@ -38,6 +38,7 @@ export class ExportVaultService {
 		const decryptedVault = await this.getDecryptedVault(user);
 		switch (format) {
 			case "json":
+        console.log(this.formatAsJson(decryptedVault));
 				return this.formatAsJson(decryptedVault);
 			case "json_protected":
 				if (!exportPassword) {
@@ -70,6 +71,7 @@ export class ExportVaultService {
 			where: { userId: user.id },
 		});
 		const decryptedCredentials = credentials.map((credential) => {
+      console.log(credential);
 			return this.encryptionService.getDecryptedCredential(
 				{
 					id: credential.id,
@@ -78,6 +80,8 @@ export class ExportVaultService {
 					encryptedUsernameIv: credential.encryptedUsernameIv,
 					encryptedUsernameContent: credential.encryptedUsernameContent,
 					encryptedUrlIv: credential.encryptedUrlIv,
+          encrpytedPasswordContent: credential.encryptedPasswordContent,
+          encryptedPasswordIv: credential.encryptedPasswordIv,
 					encryptedUrlContent: credential.encryptedUrlContent,
 					categoryId: credential.categoryId ?? undefined,
 				},

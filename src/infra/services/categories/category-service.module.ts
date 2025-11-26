@@ -6,6 +6,7 @@ import {
 	CreateCategoryService,
 	DeleteCategoryService,
 	FindAllCategoriesService,
+	GetCategoryDetailsService,
 	UpdateCategoryService,
 } from "@/infra/services/categories/services";
 import { Module } from "@nestjs/common";
@@ -16,6 +17,7 @@ import { Module } from "@nestjs/common";
 		CreateCategoryService,
 		UpdateCategoryService,
 		FindAllCategoriesService,
+    GetCategoryDetailsService,
 		UpdateCategoryService,
 		DeleteCategoryService,
 	],
@@ -24,6 +26,7 @@ import { Module } from "@nestjs/common";
 		UpdateCategoryService,
 		FindAllCategoriesService,
 		UpdateCategoryService,
+    GetCategoryDetailsService,
 		DeleteCategoryService,
 	],
 })

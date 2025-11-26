@@ -3,6 +3,7 @@ import {
 	DeleteCategoryController,
 	EditCategoryController,
 	FindAllCategoriesController,
+    GetCategoryDetailsController,
 } from "@/infra/http/categories/controllers";
 import { ServiceModule } from "@/infra/services/service.module";
 import { Module } from "@nestjs/common";
@@ -10,6 +11,7 @@ import { Module } from "@nestjs/common";
 @Module({
 	controllers: [
 		CreateCategoryController,
+    GetCategoryDetailsController,
 		EditCategoryController,
 		FindAllCategoriesController,
 		DeleteCategoryController,
